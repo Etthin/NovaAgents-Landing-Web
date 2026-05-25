@@ -242,7 +242,21 @@ footer{padding:40px 0;border-top:1px solid var(--gray-800)}
 .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
 .footer-copy{font-size:13px;color:var(--gray-500)}
 
-/* ─── RESPONSIVE ─── */
+/* ─── FAQ ─── */
+.faq-section{background:var(--gray-950);border-top:1px solid var(--gray-800)}
+.faq-list{display:flex;flex-direction:column;gap:0}
+.faq-item{border-bottom:1px solid var(--gray-800)}
+.faq-item:first-child{border-top:1px solid var(--gray-800)}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:24px 0;background:none;color:var(--white);font-family:var(--font-body);font-size:16px;font-weight:500;text-align:left;cursor:pointer;transition:color var(--transition)}
+.faq-q:hover{color:var(--accent)}
+.faq-q:hover .faq-arrow{stroke:var(--accent)}
+.faq-arrow{width:20px;height:20px;flex-shrink:0;transition:transform 0.3s ease,stroke 0.2s ease;stroke:var(--gray-400)}
+.faq-q.open .faq-arrow{transform:rotate(180deg)}
+.faq-q.open{color:var(--accent)}
+.faq-q.open .faq-arrow{stroke:var(--accent)}
+.faq-a{font-size:15px;color:var(--gray-300);line-height:1.75;max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s ease;padding-bottom:0}
+.faq-a.open{max-height:300px;padding-bottom:24px}
+
 @media(max-width:900px){
   .prob-sol-grid{grid-template-columns:1fr}
   .system-flow{grid-template-columns:1fr 1fr;gap:24px}
@@ -619,6 +633,84 @@ footer{padding:40px 0;border-top:1px solid var(--gray-800)}
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="section-header reveal" style="text-align:center;max-width:600px;margin:0 auto 64px">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">Preguntas frecuentes</h2>
+      <p class="section-sub" style="margin:0 auto">Todo lo que necesitas saber antes de activar.</p>
+    </div>
+    <div class="faq-list reveal" style="max-width:760px;margin:0 auto">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>¿Necesito tener conocimientos técnicos para implementarlo?</span>
+          <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a">No. Nosotros nos encargamos de toda la configuración e integración. Tú solo nos das acceso a tus canales (Instagram, WhatsApp, web) y en menos de 24 horas el sistema está activo y funcionando. No necesitas tocar ningún código ni herramienta técnica.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>¿Con qué canales funciona el sistema?</span>
+          <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a">Instagram DMs, WhatsApp Business, formularios de tu web y email. El sistema unifica todos los canales en un solo flujo automatizado. Si recibes leads por otras plataformas, consúltanos y lo valoramos.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>¿El agente IA suena robótico o natural?</span>
+          <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a">Natural. Entrenamos el agente con el tono, estilo y vocabulario específico de tu clínica. Responde como lo haría tu mejor recepcionista: con calidez, profesionalidad y conocimiento de tus tratamientos. La mayoría de leads no saben que es IA.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>¿Qué pasa si un lead hace una pregunta muy específica que el agente no sabe responder?</span>
+          <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a">El sistema detecta automáticamente cuándo una consulta requiere atención humana y alerta a tu equipo en tiempo real para que tome el relevo. Nunca deja a un lead sin respuesta y nunca improvisa información médica sensible.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>¿Cuánto tiempo tarda la activación?</span>
+          <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a">Menos de 24 horas desde que nos das acceso. Nuestro equipo configura, entrena y prueba el sistema antes de activarlo. En el Pack Elite con CRM e integraciones avanzadas puede extenderse a 48-72 horas según la complejidad.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>¿Hay permanencia o puedo cancelar cuando quiera?</span>
+          <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a">Sin permanencia. Puedes cancelar en cualquier momento con un aviso de 30 días. No hay letras pequeñas ni penalizaciones. Confiamos en que los resultados hablarán por sí solos.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>¿Es legal usar IA para gestionar leads de una clínica médica?</span>
+          <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a">Sí. El sistema gestiona comunicación comercial y reservas, no diagnósticos ni prescripciones médicas. Cumplimos con el RGPD y la normativa española de protección de datos. Todos los datos se tratan con cifrado y los leads dan su consentimiento implícito al iniciar la conversación.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>¿Cómo sé si el sistema está funcionando bien?</span>
+          <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a">Tendrás acceso a un dashboard con métricas en tiempo real: leads recibidos, tasa de respuesta, conversaciones activas, reservas generadas y leads cualificados. Los planes Growth y Elite incluyen reportes semanales con análisis de rendimiento.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- FINAL CTA -->
 <section class="final-cta" id="contact">
   <div class="container">
@@ -746,6 +838,20 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── FAQ ──
+function toggleFaq(btn) {
+  const answer = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  document.querySelectorAll('.faq-q.open').forEach(b => {
+    b.classList.remove('open');
+    b.nextElementSibling.classList.remove('open');
+  });
+  if(!isOpen) {
+    btn.classList.add('open');
+    answer.classList.add('open');
+  }
+}
 
 // ── DIAGNOSIS QUIZ ──
 const questions = [
@@ -882,7 +988,7 @@ function showResult() {
         </div>
         <div class="result-cta-area">
           <p class="result-cta-label">Nova Agents puede recuperar el 80% de estos ingresos desde el primer mes.</p>
-          <button class="btn-primary" onclick="openForm()" style="margin:0 auto">Quiero recuperar estos ingresos →</button>
+          <button class="btn-primary" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" style="margin:0 auto">Quiero recuperar estos ingresos →</button>
           <button class="result-retake" onclick="retakeQuiz()">Repetir el diagnóstico</button>
         </div>
       </div>
