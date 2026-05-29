@@ -5,362 +5,381 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nova Agents — Más reservas para tu clínica</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --black:#0a0a0a;--white:#fff;
-  --g950:#0f0f0f;--g900:#141414;--g800:#1c1c1c;--g700:#2a2a2a;--g600:#3d3d3d;--g400:#888;--g300:#b0b0b0;
-  --accent:#00d4aa;--accent-dim:#00b891;--accent-sub:rgba(0,212,170,0.08);--accent-bord:rgba(0,212,170,0.25);
-  --danger:#ff4d4d;--warn:#ffaa00;
-  --fd:'Syne',sans-serif;--fb:'DM Sans',sans-serif;
-  --r6:6px;--r12:12px;--r20:20px;--r32:32px;
-  --tr:0.3s cubic-bezier(0.4,0,0.2,1);
+  --black:#111;
+  --white:#fff;
+  --gray-50:#f9fafb;
+  --gray-100:#f3f4f6;
+  --gray-200:#e5e7eb;
+  --gray-300:#d1d5db;
+  --gray-400:#9ca3af;
+  --gray-500:#6b7280;
+  --gray-600:#4b5563;
+  --gray-700:#374151;
+  --gray-800:#1f2937;
+  --gray-900:#111827;
+  --green:#16a34a;
+  --green-light:#dcfce7;
+  --green-mid:#22c55e;
+  --red:#dc2626;
+  --red-light:#fee2e2;
+  --amber:#d97706;
+  --amber-light:#fef3c7;
+  --blue:#2563eb;
+  --r4:4px;--r8:8px;--r12:12px;--r16:16px;--r24:24px;
+  --tr:0.2s ease;
+  --font:'Inter',sans-serif;
+  --max:1080px;
 }
-html{scroll-behavior:smooth}
-body{background:var(--g950);color:var(--white);font-family:var(--fb);font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--white);color:var(--gray-800);font-family:var(--font);font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
-button{cursor:pointer;border:none;font-family:var(--fb);font-size:inherit}
-::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--g950)}::-webkit-scrollbar-thumb{background:var(--g700);border-radius:3px}
+button{cursor:pointer;border:none;font-family:var(--font)}
+input,select,textarea{font-family:var(--font)}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:#f1f1f1}::-webkit-scrollbar-thumb{background:#ccc;border-radius:2px}
 
 /* UTILS */
-.container{max-width:1120px;margin:0 auto;padding:0 24px}
-.badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:100px;font-size:12px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;border:1px solid var(--accent-bord);color:var(--accent);background:var(--accent-sub)}
-.badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.container{max-width:var(--max);margin:0 auto;padding:0 24px}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
 .reveal.visible{opacity:1;transform:none}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+.tag{display:inline-block;padding:4px 12px;border-radius:100px;font-size:12px;font-weight:500;letter-spacing:.02em}
+.tag-green{background:var(--green-light);color:var(--green)}
+.tag-gray{background:var(--gray-100);color:var(--gray-600)}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;transition:background var(--tr),border-color var(--tr)}
-nav.scrolled{background:rgba(10,10,10,.92);border-bottom:1px solid var(--g800);backdrop-filter:blur(20px)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
-.logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.logo-mark{width:34px;height:34px}
-.logo-text{font-family:var(--fd);font-weight:700;font-size:17px;letter-spacing:-.02em}
-.logo-text span{color:var(--accent)}
-.nav-links{display:flex;align-items:center;gap:32px}
-.nav-links a{font-size:14px;color:var(--g400);transition:color var(--tr);font-weight:400}
-.nav-links a:hover{color:var(--white)}
-.nav-cta{padding:10px 22px;border-radius:var(--r6);background:var(--accent);color:var(--black);font-weight:600;font-size:14px;transition:all var(--tr);white-space:nowrap}
-.nav-cta:hover{background:var(--accent-dim);transform:translateY(-1px)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--gray-200);padding:0}
+.nav-inner{max-width:var(--max);margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:center;gap:9px}
+.logo-mark{width:28px;height:28px}
+.logo-name{font-weight:600;font-size:16px;color:var(--gray-900);letter-spacing:-.02em}
+.logo-name span{color:var(--green)}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-size:14px;color:var(--gray-500);transition:color var(--tr);font-weight:400}
+.nav-links a:hover{color:var(--gray-900)}
+.nav-cta{padding:8px 18px;border-radius:var(--r8);background:var(--gray-900);color:var(--white);font-size:14px;font-weight:500;transition:all var(--tr)}
+.nav-cta:hover{background:var(--gray-700)}
 .nav-burger{display:none;flex-direction:column;gap:5px;background:none;padding:4px}
-.nav-burger span{display:block;width:22px;height:2px;background:var(--g300);border-radius:2px;transition:all var(--tr)}
-
-/* BTNS */
-.btn-p{padding:15px 30px;border-radius:var(--r6);background:var(--accent);color:var(--black);font-weight:600;font-size:15px;transition:all var(--tr);display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:none;font-family:var(--fb)}
-.btn-p:hover{background:var(--accent-dim);transform:translateY(-2px);box-shadow:0 16px 36px rgba(0,212,170,.22)}
-.btn-s{padding:15px 30px;border-radius:var(--r6);background:transparent;color:var(--white);font-weight:400;font-size:15px;border:1px solid var(--g700);transition:all var(--tr);display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-family:var(--fb)}
-.btn-s:hover{border-color:var(--g500);background:var(--g900)}
+.nav-burger span{display:block;width:20px;height:1.5px;background:var(--gray-600);border-radius:1px}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:130px 0 80px;position:relative;overflow:hidden}
-.hero-bg{position:absolute;inset:0;pointer-events:none}
-.hgrid{position:absolute;inset:0;background-image:linear-gradient(var(--g800) 1px,transparent 1px),linear-gradient(90deg,var(--g800) 1px,transparent 1px);background-size:60px 60px;opacity:.25}
-.hglow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(0,212,170,.1) 0%,transparent 70%);top:-80px;right:-80px;animation:drift 8s ease-in-out infinite alternate}
-.hglow2{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,.06) 0%,transparent 70%);bottom:-60px;left:-60px;animation:drift2 10s ease-in-out infinite alternate}
-@keyframes drift{0%{transform:translate(0,0)}100%{transform:translate(30px,40px)}}
-@keyframes drift2{0%{transform:translate(0,0)}100%{transform:translate(-20px,30px)}}
-.hero-content{position:relative;z-index:1;max-width:800px}
-.hero h1{font-family:var(--fd);font-size:clamp(2.6rem,5.5vw,4.8rem);font-weight:800;line-height:1.0;letter-spacing:-.04em;margin-bottom:24px}
-.h1-accent{color:var(--accent)}.h1-dim{color:var(--g400)}
-.hero-sub{font-size:clamp(1rem,1.7vw,1.18rem);color:var(--g300);max-width:540px;line-height:1.75;margin-bottom:44px;font-weight:300}
-.hero-eyebrow{margin-bottom:28px}
-.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:60px}
-.hero-stats{display:flex;gap:48px;flex-wrap:wrap}
-.hstat-num{font-family:var(--fd);font-size:1.9rem;font-weight:700}
-.hstat-label{font-size:12px;color:var(--g400);margin-top:2px}
+.hero{padding:120px 0 80px;background:var(--white)}
+.hero-inner{max-width:680px}
+.hero-eyebrow{display:flex;align-items:center;gap:8px;margin-bottom:24px;font-size:13px;color:var(--gray-500)}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:var(--green-mid)}
+h1{font-size:clamp(2rem,4.5vw,3.6rem);font-weight:700;line-height:1.08;letter-spacing:-.03em;color:var(--gray-900);margin-bottom:20px}
+h1 em{font-style:normal;color:var(--green)}
+.hero-sub{font-size:clamp(1rem,1.5vw,1.1rem);color:var(--gray-500);line-height:1.75;max-width:520px;margin-bottom:36px;font-weight:400}
+.hero-ctas{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:48px}
+.btn-primary{padding:13px 26px;border-radius:var(--r8);background:var(--gray-900);color:var(--white);font-size:14px;font-weight:500;transition:all var(--tr);display:inline-flex;align-items:center;gap:7px;cursor:pointer;font-family:var(--font)}
+.btn-primary:hover{background:var(--gray-700)}
+.btn-secondary{padding:13px 26px;border-radius:var(--r8);background:var(--white);color:var(--gray-700);font-size:14px;font-weight:400;border:1px solid var(--gray-300);transition:all var(--tr);display:inline-flex;align-items:center;gap:7px;cursor:pointer;font-family:var(--font)}
+.btn-secondary:hover{border-color:var(--gray-400);background:var(--gray-50)}
+.hero-stat{font-size:13px;color:var(--gray-400);line-height:1.65;padding-top:20px;border-top:1px solid var(--gray-200);max-width:480px}
+.hero-stat strong{color:var(--gray-700);font-weight:500}
 
 /* SECTIONS */
-section{padding:96px 0}
-.s-label{font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
-.s-title{font-family:var(--fd);font-size:clamp(1.9rem,3.8vw,3rem);font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-bottom:14px}
-.s-sub{font-size:1.05rem;color:var(--g300);line-height:1.7}
-.s-header{margin-bottom:60px}
+section{padding:80px 0}
+.section-label{font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-400);margin-bottom:10px}
+.section-title{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;letter-spacing:-.03em;color:var(--gray-900);line-height:1.15;margin-bottom:14px}
+.section-sub{font-size:1rem;color:var(--gray-500);line-height:1.7;max-width:520px}
+
+/* DIVIDER */
+.divider{height:1px;background:var(--gray-200)}
 
 /* DIAGNOSIS */
-.diag-section{background:var(--g900);border-top:1px solid var(--g800);border-bottom:1px solid var(--g800)}
-.diag-wrap{max-width:700px;margin:0 auto}
-.diag-prog{display:flex;gap:8px;margin-bottom:44px}
-.diag-prog-step{flex:1;height:3px;border-radius:2px;background:var(--g700);transition:background .4s}
-.diag-prog-step.active{background:var(--accent)}
-.diag-prog-step.done{background:var(--accent-dim)}
-.diag-q{font-family:var(--fd);font-size:clamp(1.3rem,2.6vw,1.9rem);font-weight:600;letter-spacing:-.02em;margin-bottom:10px}
-.diag-hint{font-size:14px;color:var(--g400);margin-bottom:32px}
-.diag-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.diag-opt{padding:16px 18px;border-radius:var(--r12);background:var(--g800);border:1px solid var(--g700);color:var(--white);font-size:14px;font-family:var(--fb);font-weight:400;text-align:left;transition:all var(--tr);cursor:pointer}
-.diag-opt:hover,.diag-opt.sel{border-color:var(--accent);background:var(--accent-sub);color:var(--accent)}
-.diag-nav{display:flex;justify-content:space-between;align-items:center;margin-top:32px}
-.diag-back{background:none;color:var(--g400);font-size:14px;padding:8px;transition:color var(--tr)}
-.diag-back:hover{color:var(--white)}
-.diag-next{padding:13px 26px;border-radius:var(--r6);background:var(--accent);color:var(--black);font-weight:600;font-size:14px;transition:all var(--tr)}
-.diag-next:hover{background:var(--accent-dim)}
-.result-card{border-radius:var(--r20);border:1px solid var(--g700);overflow:hidden}
-.result-hdr{padding:30px;background:var(--g800)}
-.result-risk{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600;margin-bottom:16px}
-.r-high{background:rgba(255,77,77,.12);color:var(--danger);border:1px solid rgba(255,77,77,.3)}
-.r-med{background:rgba(255,170,0,.12);color:var(--warn);border:1px solid rgba(255,170,0,.3)}
-.r-low{background:var(--accent-sub);color:var(--accent);border:1px solid var(--accent-bord)}
-.result-title{font-family:var(--fd);font-size:1.5rem;font-weight:700;margin-bottom:6px}
-.result-sub{color:var(--g300);font-size:14px}
-.result-nums{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--g700)}
-.result-num{background:var(--g800);padding:24px 28px}
-.rn-label{font-size:11px;color:var(--g400);letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px}
-.rn-val{font-family:var(--fd);font-size:2.2rem;font-weight:800;color:var(--danger)}
-.rn-note{font-size:12px;color:var(--g400);margin-top:4px}
-.result-cta{padding:28px;background:var(--g800);border-top:1px solid var(--g700);text-align:center}
-.result-retake{background:none;color:var(--g400);font-size:12px;margin-top:14px;display:block;width:fit-content;margin-left:auto;margin-right:auto;transition:color var(--tr)}
-.result-retake:hover{color:var(--white)}
+.diag-bg{background:var(--gray-50)}
+.diag-wrap{max-width:620px;margin:0 auto}
+.diag-prog{display:flex;gap:6px;margin-bottom:36px}
+.dp{flex:1;height:2px;border-radius:1px;background:var(--gray-200);transition:background .3s}
+.dp.active,.dp.done{background:var(--green)}
+.diag-q{font-size:clamp(1.1rem,2vw,1.5rem);font-weight:600;color:var(--gray-900);letter-spacing:-.02em;margin-bottom:6px;line-height:1.3}
+.diag-hint{font-size:13px;color:var(--gray-400);margin-bottom:24px}
+.diag-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.diag-opt{padding:13px 16px;border-radius:var(--r8);background:var(--white);border:1px solid var(--gray-200);color:var(--gray-700);font-size:13px;font-family:var(--font);text-align:left;transition:all var(--tr);cursor:pointer;line-height:1.4}
+.diag-opt:hover{border-color:var(--gray-400);background:var(--gray-50)}
+.diag-opt.sel{border-color:var(--green);background:var(--green-light);color:var(--green)}
+.diag-nav{display:flex;justify-content:space-between;align-items:center;margin-top:24px}
+.diag-back{background:none;color:var(--gray-400);font-size:13px;padding:6px 0;transition:color var(--tr)}
+.diag-back:hover{color:var(--gray-700)}
+.diag-next{padding:11px 22px;border-radius:var(--r8);background:var(--gray-900);color:var(--white);font-weight:500;font-size:13px;transition:all var(--tr)}
+.diag-next:hover{background:var(--gray-700)}
+.result-box{border-radius:var(--r16);border:1px solid var(--gray-200);overflow:hidden;background:var(--white)}
+.result-top{padding:28px 32px;border-bottom:1px solid var(--gray-200)}
+.result-badge{display:inline-block;padding:4px 12px;border-radius:100px;font-size:12px;font-weight:500;margin-bottom:12px}
+.rb-high{background:var(--red-light);color:var(--red)}
+.rb-med{background:var(--amber-light);color:var(--amber)}
+.rb-low{background:var(--green-light);color:var(--green)}
+.result-title{font-size:1.3rem;font-weight:700;color:var(--gray-900);margin-bottom:6px;letter-spacing:-.02em}
+.result-desc{font-size:13px;color:var(--gray-500);line-height:1.6}
+.result-nums{display:grid;grid-template-columns:1fr 1fr}
+.result-num{padding:22px 28px;border-right:1px solid var(--gray-200)}
+.result-num:last-child{border-right:none}
+.rn-label{font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.rn-val{font-size:1.8rem;font-weight:700;color:var(--red);letter-spacing:-.02em;line-height:1}
+.rn-sub{font-size:12px;color:var(--gray-400);margin-top:4px}
+.result-footer{padding:22px 28px;background:var(--gray-50);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.result-note{font-size:12px;color:var(--gray-400)}
+.result-retake{font-size:12px;color:var(--gray-400);background:none;transition:color var(--tr);padding:4px}
+.result-retake:hover{color:var(--gray-700)}
 
-/* HOW IT WORKS */
-.how-section{background:var(--g950)}
-.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:56px;border-radius:var(--r20);overflow:hidden;border:1px solid var(--g800)}
-.step-card{background:var(--g900);padding:36px 28px;transition:background var(--tr)}
-.step-card:hover{background:var(--g800)}
-.step-num{font-family:var(--fd);font-size:2.4rem;font-weight:800;color:var(--accent);opacity:.3;margin-bottom:16px;line-height:1}
-.step-title{font-weight:600;font-size:16px;margin-bottom:8px}
-.step-desc{font-size:13px;color:var(--g400);line-height:1.6}
+/* HOW */
+.how-bg{background:var(--white)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--gray-200);border:1px solid var(--gray-200);border-radius:var(--r16);overflow:hidden;margin-top:48px}
+.step{background:var(--white);padding:28px 22px;transition:background var(--tr)}
+.step:hover{background:var(--gray-50)}
+.step-num{font-size:11px;font-weight:600;color:var(--gray-400);letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px}
+.step-title{font-size:15px;font-weight:600;color:var(--gray-900);margin-bottom:6px;line-height:1.3}
+.step-desc{font-size:13px;color:var(--gray-500);line-height:1.6}
 
-/* RESULTS */
-.results-section{background:var(--g900);border-top:1px solid var(--g800);border-bottom:1px solid var(--g800)}
-.results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px}
-.result-tile{background:var(--g800);border:1px solid var(--g700);border-radius:var(--r20);padding:36px 28px;transition:border-color var(--tr)}
-.result-tile:hover{border-color:var(--g600)}
-.tile-num{font-family:var(--fd);font-size:2.8rem;font-weight:800;color:var(--accent);line-height:1;margin-bottom:10px}
-.tile-title{font-weight:600;font-size:16px;margin-bottom:6px}
-.tile-desc{font-size:13px;color:var(--g400);line-height:1.6}
+/* FACTS */
+.facts-bg{background:var(--gray-50)}
+.facts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.fact{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--r12);padding:24px}
+.fact-source{font-size:11px;color:var(--gray-400);margin-bottom:10px;font-weight:500;letter-spacing:.03em}
+.fact-num{font-size:2rem;font-weight:700;color:var(--gray-900);letter-spacing:-.03em;line-height:1;margin-bottom:8px}
+.fact-desc{font-size:13px;color:var(--gray-500);line-height:1.65}
 
-/* TESTIMONIALS */
-.social-section{background:var(--g950)}
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:56px}
-.testi-card{background:var(--g900);border:1px solid var(--g800);border-radius:var(--r20);padding:28px;transition:border-color var(--tr)}
-.testi-card:hover{border-color:var(--g700)}
-.testi-metric{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:100px;background:var(--accent-sub);color:var(--accent);font-size:12px;font-weight:600;margin-bottom:16px}
-.testi-quote{font-size:14px;line-height:1.7;color:var(--g300);margin-bottom:20px;font-style:italic}
-.testi-author{display:flex;align-items:center;gap:10px}
-.testi-av{width:36px;height:36px;border-radius:50%;background:var(--accent-sub);border:1px solid var(--accent-bord);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:var(--accent);flex-shrink:0}
-.testi-name{font-weight:500;font-size:13px}
-.testi-clinic{font-size:11px;color:var(--g400)}
+/* WHAT YOU GET */
+.get-bg{background:var(--white)}
+.get-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:48px}
+.get-items{display:flex;flex-direction:column}
+.get-item{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid var(--gray-100)}
+.get-item:last-child{border-bottom:none}
+.get-check{width:20px;height:20px;border-radius:50%;background:var(--green-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.get-check svg{width:10px;height:10px;stroke:var(--green);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.get-title{font-size:15px;font-weight:500;color:var(--gray-900);margin-bottom:4px}
+.get-desc{font-size:13px;color:var(--gray-500);line-height:1.65}
+.get-side{display:flex;flex-direction:column;gap:16px;position:sticky;top:80px}
+.card{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--r12);padding:24px}
+.card-label{font-size:11px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px}
+.card-title{font-size:1rem;font-weight:600;color:var(--gray-900);margin-bottom:8px;line-height:1.4}
+.card-desc{font-size:13px;color:var(--gray-500);line-height:1.65}
+.onboarding-steps{display:flex;flex-direction:column;gap:12px;margin-top:4px}
+.ob-row{display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--gray-600)}
+.ob-n{width:20px;height:20px;border-radius:50%;background:var(--white);border:1px solid var(--gray-300);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--gray-500);flex-shrink:0;margin-top:1px}
 
 /* PRICING */
-.pricing-section{background:var(--g900);border-top:1px solid var(--g800);border-bottom:1px solid var(--g800)}
-.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:56px}
-.p-card{background:var(--g800);border:1px solid var(--g700);border-radius:var(--r20);padding:36px 28px;position:relative;transition:all var(--tr)}
-.p-card:hover{transform:translateY(-3px)}
-.p-card.feat{border-color:var(--accent);background:var(--g800)}
-.p-card.feat::before{content:'Más popular';position:absolute;top:-11px;left:50%;transform:translateX(-50%);padding:4px 14px;border-radius:100px;background:var(--accent);color:var(--black);font-size:11px;font-weight:700;white-space:nowrap}
-.p-name{font-family:var(--fd);font-size:1.15rem;font-weight:700;margin-bottom:6px}
-.p-desc{font-size:13px;color:var(--g400);margin-bottom:24px;line-height:1.5}
-.p-setup{font-size:12px;color:var(--g400);margin-bottom:4px}
-.p-setup s{color:var(--g600)}
-.p-setup strong{color:var(--accent)}
-.p-price-row{margin-bottom:6px}
-.p-amount{font-family:var(--fd);font-size:2.8rem;font-weight:800;line-height:1}
-.p-period{font-size:13px;color:var(--g400)}
-.p-hook{font-size:12px;color:var(--accent);margin-bottom:24px;font-weight:500}
-.p-feats{list-style:none;margin-bottom:28px;display:flex;flex-direction:column;gap:9px}
-.p-feat{display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:1.45}
-.p-feat.yes{color:var(--g300)}
-.p-feat.no{color:var(--g600)}
-.p-feat.no span.fi{opacity:.4}
-.p-cta{width:100%;padding:14px;border-radius:var(--r6);font-weight:600;font-size:14px;transition:all var(--tr);cursor:pointer;font-family:var(--fb)}
-.p-cta-acc{background:var(--accent);color:var(--black)}
-.p-cta-acc:hover{background:var(--accent-dim);transform:translateY(-1px)}
-.p-cta-ghost{background:transparent;color:var(--white);border:1px solid var(--g600)}
-.p-cta-ghost:hover{border-color:var(--g400);background:var(--g900)}
+.pricing-bg{background:var(--gray-50)}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.p-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--r16);padding:28px 24px;position:relative;transition:box-shadow var(--tr)}
+.p-card:hover{box-shadow:0 4px 24px rgba(0,0,0,.06)}
+.p-card.featured{border-color:var(--gray-900);border-width:1.5px}
+.p-featured-tag{position:absolute;top:-11px;left:50%;transform:translateX(-50%);padding:3px 12px;border-radius:100px;background:var(--gray-900);color:var(--white);font-size:11px;font-weight:600;white-space:nowrap}
+.p-name{font-size:1rem;font-weight:600;color:var(--gray-900);margin-bottom:4px}
+.p-desc{font-size:13px;color:var(--gray-400);margin-bottom:18px;line-height:1.5}
+.p-setup{font-size:12px;color:var(--gray-400);margin-bottom:4px}
+.p-setup s{color:var(--gray-300)}
+.p-setup b{color:var(--gray-600);font-weight:500}
+.p-price{font-size:2.4rem;font-weight:700;color:var(--gray-900);letter-spacing:-.03em;line-height:1;margin-bottom:2px}
+.p-price span{font-size:14px;font-weight:400;color:var(--gray-400)}
+.p-hr{height:1px;background:var(--gray-100);margin:18px 0}
+.p-feats{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:22px}
+.p-feat{display:flex;gap:8px;align-items:flex-start;font-size:13px;line-height:1.4}
+.p-feat.yes{color:var(--gray-700)}
+.p-feat.no{color:var(--gray-300)}
+.fi-yes{color:var(--green);font-weight:600;flex-shrink:0;margin-top:1px}
+.fi-no{color:var(--gray-300);flex-shrink:0;margin-top:1px}
+.p-cta{width:100%;padding:12px;border-radius:var(--r8);font-size:13px;font-weight:500;transition:all var(--tr);cursor:pointer;font-family:var(--font);text-align:center}
+.p-cta-dark{background:var(--gray-900);color:var(--white);border:none}
+.p-cta-dark:hover{background:var(--gray-700)}
+.p-cta-outline{background:var(--white);color:var(--gray-700);border:1px solid var(--gray-200)}
+.p-cta-outline:hover{border-color:var(--gray-400);background:var(--gray-50)}
+.p-note{text-align:center;font-size:11px;color:var(--gray-400);margin-top:8px}
 
 /* FAQ */
-.faq-section{background:var(--g950);border-top:1px solid var(--g800)}
-.faq-list{max-width:740px;margin:0 auto}
-.faq-item{border-bottom:1px solid var(--g800)}
-.faq-item:first-child{border-top:1px solid var(--g800)}
-.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0;background:none;color:var(--white);font-family:var(--fb);font-size:15px;font-weight:500;text-align:left;cursor:pointer;transition:color var(--tr)}
-.faq-q:hover,.faq-q.open{color:var(--accent)}
-.faq-arr{width:18px;height:18px;flex-shrink:0;transition:transform .3s ease;stroke:var(--g400)}
-.faq-q.open .faq-arr{transform:rotate(180deg);stroke:var(--accent)}
-.faq-a{font-size:14px;color:var(--g300);line-height:1.75;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease;padding-bottom:0}
-.faq-a.open{max-height:300px;padding-bottom:22px}
+.faq-bg{background:var(--white)}
+.faq-list{max-width:640px;margin:48px auto 0}
+.faq-item{border-bottom:1px solid var(--gray-100)}
+.faq-item:first-child{border-top:1px solid var(--gray-100)}
+.faq-btn{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;background:none;color:var(--gray-800);font-family:var(--font);font-size:14px;font-weight:400;text-align:left;cursor:pointer;transition:color var(--tr)}
+.faq-btn:hover{color:var(--gray-900)}
+.faq-icon{width:16px;height:16px;flex-shrink:0;transition:transform .25s;color:var(--gray-400)}
+.faq-btn.open .faq-icon{transform:rotate(45deg)}
+.faq-answer{font-size:13px;color:var(--gray-500);line-height:1.75;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .25s ease;padding-bottom:0}
+.faq-answer.open{max-height:260px;padding-bottom:18px}
 
 /* CONTACT */
-.contact-section{background:var(--g900);border-top:1px solid var(--g800)}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-top:56px}
-.contact-info-block{display:flex;flex-direction:column;gap:24px}
-.contact-channel{display:flex;align-items:center;gap:14px;padding:20px 24px;background:var(--g800);border:1px solid var(--g700);border-radius:var(--r12);transition:border-color var(--tr)}
-.contact-channel:hover{border-color:var(--g600)}
-.ch-icon{width:40px;height:40px;border-radius:10px;background:var(--accent-sub);border:1px solid var(--accent-bord);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.ch-icon svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:1.8;stroke-linecap:round}
-.ch-label{font-size:11px;color:var(--g400);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
-.ch-val{font-size:15px;font-weight:500}
-.contact-form-area{background:var(--g800);border:1px solid var(--g700);border-radius:var(--r20);padding:36px}
-.cf-title{font-family:var(--fd);font-size:1.3rem;font-weight:700;margin-bottom:6px}
-.cf-sub{font-size:13px;color:var(--g400);margin-bottom:28px;line-height:1.5}
-.cf-field{margin-bottom:14px}
-.cf-field label{font-size:12px;color:var(--g400);display:block;margin-bottom:6px}
-.cf-field input,.cf-field select,.cf-field textarea{width:100%;padding:12px 14px;border-radius:var(--r6);background:var(--g900);border:1px solid var(--g700);color:var(--white);font-family:var(--fb);font-size:14px;outline:none;transition:border-color var(--tr);resize:none}
-.cf-field input:focus,.cf-field select:focus,.cf-field textarea:focus{border-color:var(--accent)}
-.cf-field select option{background:var(--g900)}
+.contact-bg{background:var(--gray-50)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:48px}
+.contact-info{display:flex;flex-direction:column;gap:0}
+.contact-title{font-size:1.4rem;font-weight:700;color:var(--gray-900);letter-spacing:-.02em;margin-bottom:8px}
+.contact-sub{font-size:14px;color:var(--gray-500);line-height:1.7;margin-bottom:28px}
+.ch-link{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--white);border:1px solid var(--gray-200);border-radius:var(--r8);margin-bottom:10px;transition:border-color var(--tr)}
+.ch-link:hover{border-color:var(--gray-300)}
+.ch-icon{width:32px;height:32px;border-radius:var(--r8);background:var(--gray-50);border:1px solid var(--gray-200);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ch-icon svg{width:14px;height:14px;stroke:var(--gray-500);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ch-label{font-size:11px;color:var(--gray-400);margin-bottom:1px}
+.ch-val{font-size:13px;font-weight:500;color:var(--gray-800)}
+.contact-note{font-size:12px;color:var(--gray-400);margin-top:8px;line-height:1.65}
+.cf{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--r12);padding:28px}
+.cf-title{font-size:1rem;font-weight:600;color:var(--gray-900);margin-bottom:4px}
+.cf-sub{font-size:13px;color:var(--gray-400);margin-bottom:20px}
+.cf-field{margin-bottom:12px}
+.cf-field label{font-size:12px;color:var(--gray-500);display:block;margin-bottom:4px}
+.cf-field input,.cf-field select,.cf-field textarea{width:100%;padding:10px 12px;border-radius:var(--r8);background:var(--white);border:1px solid var(--gray-200);color:var(--gray-800);font-size:13px;outline:none;transition:border-color var(--tr);resize:none}
+.cf-field input:focus,.cf-field select:focus,.cf-field textarea:focus{border-color:var(--gray-400)}
+.cf-field select option{background:var(--white)}
 
 /* FINAL CTA */
-.fcta-section{background:var(--g950);text-align:center;padding:110px 0}
-.fcta-box{max-width:620px;margin:0 auto}
-.fcta-box h2{font-family:var(--fd);font-size:clamp(1.9rem,3.8vw,2.9rem);font-weight:800;letter-spacing:-.03em;margin-bottom:14px;line-height:1.1}
-.fcta-box p{color:var(--g300);font-size:1.05rem;margin-bottom:36px}
-.fcta-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
-.no-call-note{font-size:12px;color:var(--g500)}
+.fcta-bg{background:var(--gray-900);text-align:center;padding:88px 0}
+.fcta-box{max-width:540px;margin:0 auto}
+.fcta-box h2{font-size:clamp(1.6rem,3.2vw,2.4rem);font-weight:700;letter-spacing:-.03em;color:var(--white);margin-bottom:12px;line-height:1.15}
+.fcta-box p{color:var(--gray-400);font-size:.95rem;margin-bottom:28px;line-height:1.7}
+.fcta-ctas{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+.btn-white{padding:12px 24px;border-radius:var(--r8);background:var(--white);color:var(--gray-900);font-size:14px;font-weight:500;transition:all var(--tr);cursor:pointer;font-family:var(--font)}
+.btn-white:hover{background:var(--gray-100)}
+.btn-outline-white{padding:12px 24px;border-radius:var(--r8);background:transparent;color:var(--gray-400);font-size:14px;border:1px solid var(--gray-700);transition:all var(--tr);cursor:pointer;font-family:var(--font)}
+.btn-outline-white:hover{border-color:var(--gray-500);color:var(--white)}
+.fcta-note{font-size:12px;color:var(--gray-600)}
 
 /* FOOTER */
-footer{padding:36px 0;border-top:1px solid var(--g800)}
-.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
-.footer-copy{font-size:12px;color:var(--g600)}
+footer{padding:28px 0;background:var(--gray-900);border-top:1px solid var(--gray-800)}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{display:flex;align-items:center;gap:8px}
+.footer-logo-name{font-weight:600;font-size:14px;color:var(--gray-300)}
+.footer-logo-name span{color:var(--green-mid)}
+.footer-copy{font-size:12px;color:var(--gray-600)}
 
 /* PACK MODAL */
-.pack-modal-overlay{display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.88);backdrop-filter:blur(14px);align-items:center;justify-content:center;padding:20px}
-.pack-modal-overlay.show{display:flex}
-.pack-modal{background:var(--g900);border:1px solid var(--g700);border-radius:var(--r32);padding:48px 44px;max-width:560px;width:100%;position:relative;max-height:90vh;overflow-y:auto}
-.pm-close{position:absolute;top:18px;right:22px;background:none;color:var(--g400);font-size:26px;line-height:1;transition:color var(--tr)}
-.pm-close:hover{color:var(--white)}
-.pm-step{display:none}.pm-step.active{display:block}
-.pm-title{font-family:var(--fd);font-size:1.6rem;font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
-.pm-sub{color:var(--g400);font-size:14px;margin-bottom:28px;line-height:1.5}
-.pm-fields{display:flex;flex-direction:column;gap:14px}
-.pm-field label{font-size:12px;color:var(--g400);display:block;margin-bottom:6px}
-.pm-field input,.pm-field select,.pm-field textarea{width:100%;padding:13px 16px;border-radius:var(--r6);background:var(--g800);border:1px solid var(--g700);color:var(--white);font-family:var(--fb);font-size:14px;outline:none;transition:border-color var(--tr);resize:none}
-.pm-field input:focus,.pm-field select:focus,.pm-field textarea:focus{border-color:var(--accent)}
-.pm-field select option{background:var(--g800)}
-.pm-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px}
-.pm-opt-btn{padding:14px 12px;border-radius:var(--r12);background:var(--g800);border:1px solid var(--g700);color:var(--white);font-size:13px;font-family:var(--fb);font-weight:400;text-align:center;transition:all var(--tr);cursor:pointer;line-height:1.4}
-.pm-opt-btn:hover,.pm-opt-btn.sel{border-color:var(--accent);background:var(--accent-sub);color:var(--accent)}
-.pm-nav{display:flex;justify-content:space-between;align-items:center;margin-top:28px}
-.pm-back{background:none;color:var(--g400);font-size:14px;padding:8px;transition:color var(--tr)}
-.pm-back:hover{color:var(--white)}
-.pm-next{padding:14px 28px;border-radius:var(--r6);background:var(--accent);color:var(--black);font-weight:600;font-size:14px;transition:all var(--tr)}
-.pm-next:hover{background:var(--accent-dim)}
-.pm-prog{display:flex;gap:6px;margin-bottom:36px}
-.pm-prog-dot{width:28px;height:3px;border-radius:2px;background:var(--g700);transition:background .3s}
-.pm-prog-dot.done,.pm-prog-dot.active{background:var(--accent)}
-.pm-success{text-align:center;padding:20px 0}
-.pm-success-icon{width:64px;height:64px;border-radius:50%;background:var(--accent-sub);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:28px}
-.pm-success h3{font-family:var(--fd);font-size:1.5rem;font-weight:700;margin-bottom:8px}
-.pm-success p{color:var(--g300);font-size:14px;line-height:1.6}
+.overlay{display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:20px}
+.overlay.show{display:flex}
+.modal{background:var(--white);border-radius:var(--r16);padding:36px 32px;max-width:500px;width:100%;position:relative;max-height:90vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.12)}
+.modal-close{position:absolute;top:14px;right:16px;background:none;color:var(--gray-400);font-size:22px;line-height:1;transition:color var(--tr);padding:4px}
+.modal-close:hover{color:var(--gray-700)}
+.modal-prog{display:flex;gap:6px;margin-bottom:28px}
+.mpd{flex:1;height:2px;border-radius:1px;background:var(--gray-200);transition:background .3s}
+.mpd.active,.mpd.done{background:var(--green)}
+.modal-step{display:none}.modal-step.active{display:block}
+.m-title{font-size:1.2rem;font-weight:700;color:var(--gray-900);letter-spacing:-.02em;margin-bottom:4px}
+.m-sub{font-size:13px;color:var(--gray-400);margin-bottom:22px;line-height:1.5}
+.m-fields{display:flex;flex-direction:column;gap:12px}
+.m-label{font-size:12px;color:var(--gray-500);display:block;margin-bottom:4px}
+.m-input,.m-select{width:100%;padding:10px 12px;border-radius:var(--r8);background:var(--white);border:1px solid var(--gray-200);color:var(--gray-800);font-size:13px;outline:none;transition:border-color var(--tr)}
+.m-input:focus,.m-select:focus{border-color:var(--gray-400)}
+.m-select option{background:var(--white)}
+.m-opts{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.m-opt{padding:10px 12px;border-radius:var(--r8);background:var(--white);border:1px solid var(--gray-200);color:var(--gray-600);font-size:12px;font-family:var(--font);text-align:center;transition:all var(--tr);cursor:pointer;line-height:1.4}
+.m-opt:hover{border-color:var(--gray-300);background:var(--gray-50)}
+.m-opt.sel{border-color:var(--green);background:var(--green-light);color:var(--green)}
+.m-nav{display:flex;justify-content:space-between;align-items:center;margin-top:22px}
+.m-back{background:none;color:var(--gray-400);font-size:13px;padding:6px 0;transition:color var(--tr)}
+.m-back:hover{color:var(--gray-700)}
+.m-next{padding:11px 22px;border-radius:var(--r8);background:var(--gray-900);color:var(--white);font-weight:500;font-size:13px;transition:background var(--tr)}
+.m-next:hover{background:var(--gray-700)}
+.m-success{text-align:center;padding:16px 0}
+.m-success-icon{width:48px;height:48px;border-radius:50%;background:var(--green-light);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.m-success-icon svg{width:20px;height:20px;stroke:var(--green);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.m-success h3{font-size:1.15rem;font-weight:700;color:var(--gray-900);margin-bottom:8px}
+.m-success p{font-size:13px;color:var(--gray-500);line-height:1.65}
 
 /* DEMO MODAL */
-.demo-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.92);backdrop-filter:blur(16px);align-items:center;justify-content:center;padding:24px}
+.demo-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:24px}
 .demo-overlay.show{display:flex}
 
 /* RESPONSIVE */
 @media(max-width:900px){
-  .nav-links{display:none}
-  .nav-burger{display:flex}
-  .nav-links.open{display:flex;flex-direction:column;position:fixed;top:64px;left:0;right:0;background:rgba(10,10,10,.97);padding:24px;gap:20px;border-bottom:1px solid var(--g800)}
-  .steps-grid{grid-template-columns:1fr 1fr}
-  .results-grid{grid-template-columns:1fr 1fr}
-  .testi-grid{grid-template-columns:1fr}
-  .pricing-grid{grid-template-columns:1fr;max-width:400px;margin-left:auto;margin-right:auto}
+  .nav-links{display:none}.nav-burger{display:flex}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;top:60px;left:0;right:0;background:rgba(255,255,255,.98);padding:18px 24px;gap:18px;border-bottom:1px solid var(--gray-200)}
+  .steps{grid-template-columns:1fr 1fr}
+  .facts-grid{grid-template-columns:1fr}
+  .get-layout{grid-template-columns:1fr}
+  .get-side{position:static}
+  .pricing-grid{grid-template-columns:1fr;max-width:360px;margin-left:auto;margin-right:auto}
   .contact-grid{grid-template-columns:1fr}
 }
 @media(max-width:640px){
-  section{padding:68px 0}
-  .hero{padding:110px 0 60px}
+  section{padding:60px 0}.hero{padding:100px 0 56px}
   .diag-opts{grid-template-columns:1fr}
-  .result-nums{grid-template-columns:1fr}
-  .steps-grid{grid-template-columns:1fr}
-  .results-grid{grid-template-columns:1fr}
-  .hero-stats{gap:28px}
+  .result-nums{grid-template-columns:1fr}.result-num{border-right:none;border-bottom:1px solid var(--gray-200)}
+  .result-num:last-child{border-bottom:none}
+  .steps{grid-template-columns:1fr}
   .fcta-ctas{flex-direction:column;align-items:center}
-  .pm-opts{grid-template-columns:1fr}
-  .pack-modal{padding:32px 24px}
+  .m-opts{grid-template-columns:1fr}
+  .modal{padding:24px 18px}
 }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav id="nav">
-  <div class="container">
-    <div class="nav-inner">
-      <a href="#" class="logo">
-        <svg class="logo-mark" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="36" height="36" rx="8" fill="#141414" stroke="#2a2a2a"/>
-          <path d="M10 26L18 10L26 26" stroke="#00d4aa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M13 21H23" stroke="#00d4aa" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
-          <circle cx="18" cy="10" r="2" fill="#00d4aa"/>
-        </svg>
-        <span class="logo-text">Nova<span>Agents</span></span>
-      </a>
-      <div class="nav-links" id="nav-links">
-        <a href="#how">Cómo funciona</a>
-        <a href="#results">Resultados</a>
-        <a href="#pricing">Planes</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact">Contacto</a>
-      </div>
-      <a href="#pricing" class="nav-cta">Ver planes →</a>
-      <button class="nav-burger" onclick="toggleNav()" aria-label="Menú">
-        <span></span><span></span><span></span>
-      </button>
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <svg class="logo-mark" viewBox="0 0 28 28" fill="none">
+        <rect width="28" height="28" rx="6" fill="#f3f4f6"/>
+        <path d="M8 20L14 8L20 20" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M10.5 16H17.5" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/>
+        <circle cx="14" cy="8" r="1.5" fill="#16a34a"/>
+      </svg>
+      <span class="logo-name">Nova<span>Agents</span></span>
+    </a>
+    <div class="nav-links" id="nav-links">
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#precios">Precios</a>
+      <a href="#preguntas">Preguntas</a>
+      <a href="#contacto">Contacto</a>
     </div>
+    <a href="#precios" class="nav-cta">Ver precios</a>
+    <button class="nav-burger" onclick="document.getElementById('nav-links').classList.toggle('open')" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero" id="hero">
-  <div class="hero-bg">
-    <div class="hgrid"></div>
-    <div class="hglow"></div>
-    <div class="hglow2"></div>
-  </div>
+<section class="hero" id="inicio">
   <div class="container">
-    <div class="hero-content">
+    <div class="hero-inner">
       <div class="hero-eyebrow reveal">
-        <span class="badge">Para clínicas estéticas y dentales</span>
+        <div class="hero-dot"></div>
+        Para clínicas estéticas y dentales
       </div>
       <h1 class="reveal d1">
-        Tu clínica pierde reservas<br>
-        <span class="h1-accent">cada hora que no respondes.</span>
+        Tu clínica pierde pacientes<br>
+        por no responder<br>
+        <em>a tiempo.</em>
       </h1>
       <p class="hero-sub reveal d2">
-        Nova Agents responde por ti en segundos, filtra quién está listo para reservar y llena tu agenda — sin que tu equipo mueva un dedo.
+        Instalamos un sistema que responde a tus mensajes, hace seguimiento y llena tu agenda. Sin que cambies nada de cómo trabajas ahora.
       </p>
       <div class="hero-ctas reveal d3">
-        <button class="btn-p" onclick="document.getElementById('diagnosis').scrollIntoView({behavior:'smooth'})">
-          Descubre cuánto estás perdiendo
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8.5 4L13 8l-4.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <button class="btn-primary" onclick="document.getElementById('diagnostico').scrollIntoView({behavior:'smooth'})">
+          Calcular lo que pierdo
         </button>
-        <button class="btn-s" onclick="openDemo()">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><polygon points="4 2 14 8 4 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
-          Ver demo
+        <button class="btn-secondary" onclick="openDemo()">
+          Ver ejemplo
         </button>
       </div>
-      <div class="hero-stats reveal d4">
-        <div><div class="hstat-num">+340%</div><div class="hstat-label">Más reservas de media</div></div>
-        <div><div class="hstat-num">&lt;30s</div><div class="hstat-label">Primera respuesta</div></div>
-        <div><div class="hstat-num">24/7</div><div class="hstat-label">Sin intervención manual</div></div>
-      </div>
+      <p class="hero-stat reveal d3">
+        <strong>Las clínicas que tardan más de 5 minutos en responder tienen mucha menos probabilidad de convertir ese lead en reserva.</strong> Es el problema número uno del sector — y tiene solución.
+      </p>
     </div>
   </div>
 </section>
 
+<div class="divider"></div>
+
 <!-- DIAGNOSIS -->
-<section class="diag-section" id="diagnosis">
+<section class="diag-bg" id="diagnostico">
   <div class="container">
-    <div class="s-header reveal" style="text-align:center;max-width:580px;margin:0 auto 56px">
-      <div class="s-label">Diagnóstico gratuito</div>
-      <h2 class="s-title">¿Cuánto dinero estás dejando en la mesa cada mes?</h2>
-      <p class="s-sub" style="margin:0 auto">4 preguntas. Resultado inmediato.</p>
+    <div class="reveal" style="text-align:center;max-width:520px;margin:0 auto 44px">
+      <div class="section-label">Diagnóstico</div>
+      <h2 class="section-title">¿Cuánto estás dejando de ingresar cada mes?</h2>
+      <p class="section-sub" style="margin:0 auto;text-align:center">Cuatro preguntas. El resultado es inmediato.</p>
     </div>
     <div class="diag-wrap reveal">
       <div id="diag-quiz">
         <div class="diag-prog">
-          <div class="diag-prog-step active" id="dp1"></div>
-          <div class="diag-prog-step" id="dp2"></div>
-          <div class="diag-prog-step" id="dp3"></div>
-          <div class="diag-prog-step" id="dp4"></div>
+          <div class="dp active" id="dp1"></div><div class="dp" id="dp2"></div><div class="dp" id="dp3"></div><div class="dp" id="dp4"></div>
         </div>
-        <div id="diag-q-container"></div>
+        <div id="diag-container"></div>
         <div class="diag-nav">
-          <button class="diag-back" id="diag-back-btn" onclick="prevQ()" style="display:none">← Atrás</button>
-          <span id="diag-counter" style="font-size:12px;color:var(--g400)"></span>
+          <button class="diag-back" id="diag-back" onclick="prevQ()" style="display:none">← Atrás</button>
+          <span id="diag-count" style="font-size:12px;color:var(--gray-400)"></span>
           <button class="diag-next" onclick="nextQ()">Siguiente →</button>
         </div>
       </div>
@@ -369,291 +388,282 @@ footer{padding:36px 0;border-top:1px solid var(--g800)}
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="how-section" id="how">
+<div class="divider"></div>
+
+<!-- HOW -->
+<section class="how-bg" id="como-funciona">
   <div class="container">
-    <div class="s-header reveal">
-      <div class="s-label">Cómo funciona</div>
-      <h2 class="s-title">Llega el lead. Se convierte solo.</h2>
-      <p class="s-sub">Cuatro pasos que ocurren automáticamente, sin que tu equipo toque nada.</p>
+    <div class="reveal">
+      <div class="section-label">Cómo funciona</div>
+      <h2 class="section-title">Lo que ocurre desde que llega un mensaje.</h2>
+      <p class="section-sub">Sin que tu equipo tenga que hacer nada.</p>
     </div>
-    <div class="steps-grid reveal">
-      <div class="step-card">
-        <div class="step-num">01</div>
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step-num">Paso 01</div>
         <div class="step-title">Llega el mensaje</div>
-        <div class="step-desc">Instagram, WhatsApp o tu web. Da igual la hora o el canal.</div>
+        <div class="step-desc">Por Instagram, WhatsApp o tu web. A cualquier hora.</div>
       </div>
-      <div class="step-card">
-        <div class="step-num">02</div>
-        <div class="step-title">Respuesta en segundos</div>
-        <div class="step-desc">Tu agente responde al instante con el tono y la información de tu clínica.</div>
+      <div class="step">
+        <div class="step-num">Paso 02</div>
+        <div class="step-title">El sistema responde</div>
+        <div class="step-desc">En segundos. Con la información de tu clínica y el tono que tú nos indiques.</div>
       </div>
-      <div class="step-card">
-        <div class="step-num">03</div>
-        <div class="step-title">Filtra y cualifica</div>
-        <div class="step-desc">Separa los que van en serio de los curiosos y avisa a tu equipo solo cuando toca.</div>
+      <div class="step">
+        <div class="step-num">Paso 03</div>
+        <div class="step-title">Hace el seguimiento</div>
+        <div class="step-desc">Si el paciente no responde, el sistema vuelve a escribirle automáticamente en los días siguientes.</div>
       </div>
-      <div class="step-card">
-        <div class="step-num">04</div>
-        <div class="step-title">Reserva o seguimiento</div>
-        <div class="step-desc">Confirma la cita o activa el seguimiento automático hasta que el cliente reserve.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- RESULTS -->
-<section class="results-section" id="results">
-  <div class="container">
-    <div class="s-header reveal">
-      <div class="s-label">Resultados reales</div>
-      <h2 class="s-title">Lo que cambia desde el primer mes.</h2>
-    </div>
-    <div class="results-grid reveal">
-      <div class="result-tile">
-        <div class="tile-num">+340%</div>
-        <div class="tile-title">Más reservas</div>
-        <div class="tile-desc">Sin aumentar el gasto en publicidad. Solo convirtiendo mejor los leads que ya llegan.</div>
-      </div>
-      <div class="result-tile">
-        <div class="tile-num">-80%</div>
-        <div class="tile-title">Leads perdidos</div>
-        <div class="tile-desc">Los que antes se iban por no recibir respuesta rápida, ahora reservan.</div>
-      </div>
-      <div class="result-tile">
-        <div class="tile-num">24/7</div>
-        <div class="tile-title">Siempre disponible</div>
-        <div class="tile-desc">Sábados, festivos, a las 2 de la mañana. Ningún lead queda sin atender.</div>
-      </div>
-      <div class="result-tile">
-        <div class="tile-num">0€</div>
-        <div class="tile-title">Más en publicidad</div>
-        <div class="tile-desc">Aprovechas los leads que ya pagas y que ahora se pierden sin respuesta.</div>
-      </div>
-      <div class="result-tile">
-        <div class="tile-num">+€€€</div>
-        <div class="tile-title">Ingresos recuperados</div>
-        <div class="tile-desc">Clínicas con 80+ leads/mes recuperan entre 4.000€ y 18.000€ mensuales.</div>
-      </div>
-      <div class="result-tile">
-        <div class="tile-num">100%</div>
-        <div class="tile-title">Sin trabajo extra</div>
-        <div class="tile-desc">Tu equipo atiende clientes. El sistema gestiona los mensajes.</div>
+      <div class="step">
+        <div class="step-num">Paso 04</div>
+        <div class="step-title">Te avisa cuando hace falta</div>
+        <div class="step-desc">Si la consulta necesita un humano, te llega una alerta. El resto lo gestiona solo.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="social-section" id="testimonials">
+<div class="divider"></div>
+
+<!-- FACTS -->
+<section class="facts-bg">
   <div class="container">
-    <div class="s-header reveal">
-      <div class="s-label">Clientes reales</div>
-      <h2 class="s-title">Clínicas que llenaron agenda<br>sin contratar a nadie.</h2>
+    <div class="reveal">
+      <div class="section-label">Por qué importa la velocidad de respuesta</div>
+      <h2 class="section-title">No es un problema tuyo. Es del sector entero.</h2>
+      <p class="section-sub">Datos que explican por qué la mayoría de clínicas pierden reservas aunque tengan buena presencia en redes.</p>
     </div>
-    <div class="testi-grid reveal">
-      <div class="testi-card">
-        <div class="testi-metric">+8.400€/mes recuperados</div>
-        <p class="testi-quote">"Antes respondíamos por las tardes y perdíamos la mitad. Ahora tenemos la agenda llena y mi recepcionista no toca el Instagram."</p>
-        <div class="testi-author">
-          <div class="testi-av">AM</div>
-          <div><div class="testi-name">Ana Martínez</div><div class="testi-clinic">Clínica Estética Luminosa · Madrid</div></div>
+    <div class="facts-grid reveal">
+      <div class="fact">
+        <div class="fact-source">Harvard Business Review</div>
+        <div class="fact-num">x7</div>
+        <div class="fact-desc">Las empresas que responden en menos de una hora tienen siete veces más probabilidades de convertir ese lead que las que responden una hora después.</div>
+      </div>
+      <div class="fact">
+        <div class="fact-source">Salesforce Research</div>
+        <div class="fact-num">78%</div>
+        <div class="fact-desc">De los pacientes elige el proveedor que responde primero. No el más barato ni el más conocido — el más rápido.</div>
+      </div>
+      <div class="fact">
+        <div class="fact-source">Media del sector en España</div>
+        <div class="fact-num">+6h</div>
+        <div class="fact-desc">Es el tiempo medio que tarda una clínica estética en responder a un mensaje de Instagram. La mayoría de esos leads ya han reservado en otro sitio.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHAT YOU GET -->
+<section class="get-bg">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Lo que incluye</div>
+      <h2 class="section-title">Sin cambiar nada de tu clínica.</h2>
+      <p class="section-sub">Nos encargamos de la instalación completa. No necesitas tocar ninguna herramienta ni cambiar cómo trabajáis.</p>
+    </div>
+    <div class="get-layout reveal">
+      <div class="get-items">
+        <div class="get-item">
+          <div class="get-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+          <div>
+            <div class="get-title">Respuestas automáticas a cualquier hora</div>
+            <div class="get-desc">El sistema responde a tus mensajes con el tono y la información de tu clínica. Sin tiempos de espera, sin importar si es domingo a las 11 de la noche.</div>
+          </div>
+        </div>
+        <div class="get-item">
+          <div class="get-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+          <div>
+            <div class="get-title">Seguimiento hasta que reserva</div>
+            <div class="get-desc">Si el paciente no responde, el sistema le vuelve a escribir automáticamente en los días siguientes. Sin que nadie tenga que recordarlo.</div>
+          </div>
+        </div>
+        <div class="get-item">
+          <div class="get-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+          <div>
+            <div class="get-title">Solo te interrumpe cuando hace falta</div>
+            <div class="get-desc">Detecta cuándo una consulta necesita un humano y avisa a tu equipo. El resto lo gestiona solo.</div>
+          </div>
+        </div>
+        <div class="get-item">
+          <div class="get-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+          <div>
+            <div class="get-title">Instagram, WhatsApp y tu web</div>
+            <div class="get-desc">Los tres canales donde más leads pierden las clínicas. Sin necesidad de unificar nada manualmente.</div>
+          </div>
+        </div>
+        <div class="get-item">
+          <div class="get-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+          <div>
+            <div class="get-title">Un resumen semanal claro</div>
+            <div class="get-desc">Mensajes recibidos, cuántos derivaron a reserva y qué está pasando. Sin dashboards complicados.</div>
+          </div>
         </div>
       </div>
-      <div class="testi-card">
-        <div class="testi-metric">De 15% a 52% de conversión</div>
-        <p class="testi-quote">"Lo que más me sorprendió es que solo nos llegan los leads que de verdad quieren reservar. Hemos triplicado citas sin gastar más en anuncios."</p>
-        <div class="testi-author">
-          <div class="testi-av">LG</div>
-          <div><div class="testi-name">Laura Gómez</div><div class="testi-clinic">Med Spa Essence · Barcelona</div></div>
+      <div class="get-side">
+        <div class="card">
+          <div class="card-label">Garantía</div>
+          <div class="card-title">Si en 30 días no notas mejora en los tiempos de respuesta y seguimiento, seguimos optimizando sin coste adicional.</div>
+          <div class="card-desc" style="margin-top:8px">No pedimos que confíes a ciegas. Si no funciona, lo arreglamos — sin excusas.</div>
         </div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-metric">ROI x11 en 60 días</div>
-        <p class="testi-quote">"En dos meses el sistema generó más de once veces lo que cuesta. Ahora lo uso en mi clínica dental también y los resultados son los mismos."</p>
-        <div class="testi-author">
-          <div class="testi-av">CR</div>
-          <div><div class="testi-name">Carlos Roca</div><div class="testi-clinic">Centro Médico Estético · Valencia</div></div>
+        <div class="card">
+          <div class="card-label">Activación en 72 horas</div>
+          <div class="onboarding-steps">
+            <div class="ob-row"><div class="ob-n">1</div><div>Nos cuentas cómo trabaja tu clínica y qué tratamientos ofreces. Por escrito, cuando te venga bien.</div></div>
+            <div class="ob-row"><div class="ob-n">2</div><div>Configuramos el sistema con tu información y te lo mostramos antes de activarlo.</div></div>
+            <div class="ob-row"><div class="ob-n">3</div><div>Das el visto bueno y lo activamos. Sin tocar ninguna herramienta de tu clínica.</div></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<div class="divider"></div>
 
 <!-- PRICING -->
-<section class="pricing-section" id="pricing">
+<section class="pricing-bg" id="precios">
   <div class="container">
-    <div class="s-header reveal" style="text-align:center;max-width:560px;margin:0 auto 0">
-      <div class="s-label">Planes</div>
-      <h2 class="s-title">Elige tu plan. Activa en 72 horas.</h2>
-      <p class="s-sub" style="margin:0 auto">Sin permanencias. Sin llamadas. Sin complicaciones.</p>
+    <div class="reveal" style="text-align:center;max-width:480px;margin:0 auto 0">
+      <div class="section-label">Precios</div>
+      <h2 class="section-title">Sin permanencias. Sin sorpresas.</h2>
+      <p class="section-sub" style="margin:0 auto;text-align:center">Puedes cancelar con 30 días de aviso. Sin letras pequeñas.</p>
     </div>
     <div class="pricing-grid reveal">
 
-      <!-- STARTER -->
       <div class="p-card">
-        <div class="p-name">Pack Starter</div>
-        <div class="p-desc">Para clínicas que quieren dejar de perder leads desde hoy.</div>
-        <div class="p-setup">Setup: <s>1.500€</s> → <strong>500€ (lanzamiento)</strong></div>
-        <div class="p-price-row"><span class="p-amount">697€</span><span class="p-period">/mes</span></div>
-        <div class="p-hook">✦ Recupera la inversión en el primer mes</div>
+        <div class="p-name">Starter</div>
+        <div class="p-desc">Para clínicas que quieren dejar de perder mensajes sin respuesta.</div>
+        <div class="p-setup">Setup: <s>600€</s> &rarr; <b>240€</b></div>
+        <div class="p-price">697€<span>/mes</span></div>
+        <div class="p-hr"></div>
         <ul class="p-feats">
-          <li class="p-feat yes"><span class="fi">✅</span>Respuestas automáticas 24/7</li>
-          <li class="p-feat yes"><span class="fi">✅</span>Todos los canales (IG, Web, WA)</li>
-          <li class="p-feat yes"><span class="fi">✅</span>Entrenado con tus tratamientos</li>
-          <li class="p-feat yes"><span class="fi">✅</span>Deriva a tu equipo cuando hace falta</li>
-          <li class="p-feat yes"><span class="fi">✅</span>Activación y soporte incluidos</li>
-          <li class="p-feat no"><span class="fi">❌</span>Alertas y dashboard</li>
-          <li class="p-feat no"><span class="fi">❌</span>Seguimiento automático</li>
-          <li class="p-feat no"><span class="fi">❌</span>Agenda integrada</li>
+          <li class="p-feat yes"><span class="fi-yes">✓</span> Respuestas automáticas 24/7</li>
+          <li class="p-feat yes"><span class="fi-yes">✓</span> Instagram, WhatsApp y web</li>
+          <li class="p-feat yes"><span class="fi-yes">✓</span> Entrenado con tus tratamientos</li>
+          <li class="p-feat yes"><span class="fi-yes">✓</span> Derivación a tu equipo cuando hace falta</li>
+          <li class="p-feat yes"><span class="fi-yes">✓</span> Activación en 72h</li>
+          <li class="p-feat no"><span class="fi-no">–</span> Seguimiento automático de leads</li>
+          <li class="p-feat no"><span class="fi-no">–</span> Resumen semanal de resultados</li>
+          <li class="p-feat no"><span class="fi-no">–</span> Agenda integrada</li>
         </ul>
-        <button class="p-cta p-cta-ghost" onclick="openPackModal('Starter','697')">Activar Starter</button>
+        <button class="p-cta p-cta-outline" onclick="openModal('Starter','697')">Activar Starter</button>
       </div>
 
-      <!-- GROWTH -->
-      <div class="p-card feat">
-        <div class="p-name">Pack Growth</div>
-        <div class="p-desc">El sistema completo. La elección de las clínicas que crecen.</div>
-        <div class="p-setup">Setup: <s>2.000€</s> → <strong>900€ (lanzamiento)</strong></div>
-        <div class="p-price-row"><span class="p-amount">1.197€</span><span class="p-period">/mes</span></div>
-        <div class="p-hook">✦ ROI medio x8 en los primeros 60 días</div>
+      <div class="p-card featured">
+        <div class="p-featured-tag">Más solicitado</div>
+        <div class="p-name">Growth</div>
+        <div class="p-desc">Respuesta y seguimiento automático. Lo que usan la mayoría de nuestros clientes.</div>
+        <div class="p-setup">Setup: <s>1.000€</s> &rarr; <b>400€</b></div>
+        <div class="p-price">1.197€<span>/mes</span></div>
+        <div class="p-hr"></div>
         <ul class="p-feats">
-          <li class="p-feat yes"><span class="fi">✅</span>Respuestas automáticas 24/7</li>
-          <li class="p-feat yes"><span class="fi">✅</span>Todos los canales (IG, Web, WA)</li>
-          <li class="p-feat yes"><span class="fi">✅</span>Entrenado con tus tratamientos</li>
-          <li class="p-feat yes"><span class="fi">✅</span>Deriva a tu equipo cuando hace falta</li>
-          <li class="p-feat yes"><span class="fi">✅</span>Alertas en tiempo real + dashboard</li>
-          <li class="p-feat yes"><span class="fi">✅</span>Seguimiento automático de leads</li>
-          <li class="p-feat yes"><span class="fi">✅</span>Reportes semanales de resultados</li>
-          <li class="p-feat no"><span class="fi">❌</span>Agenda y CRM integrados</li>
+          <li class="p-feat yes"><span class="fi-yes">✓</span> Respuestas automáticas 24/7</li>
+          <li class="p-feat yes"><span class="fi-yes">✓</span> Instagram, WhatsApp y web</li>
+          <li class="p-feat yes"><span class="fi-yes">✓</span> Entrenado con tus tratamientos</li>
+          <li class="p-feat yes"><span class="fi-yes">✓</span> Derivación a tu equipo cuando hace falta</li>
+          <li class="p-feat yes"><span class="fi-yes">✓</span> Seguimiento automático de leads</li>
+          <li class="p-feat yes"><span class="fi-yes">✓</span> Resumen semanal de resultados</li>
+          <li class="p-feat yes"><span class="fi-yes">✓</span> Alertas en tiempo real</li>
+          <li class="p-feat no"><span class="fi-no">–</span> Agenda y CRM integrados</li>
         </ul>
-        <button class="p-cta p-cta-acc" onclick="openPackModal('Growth','1.197')">Activar Growth →</button>
+        <button class="p-cta p-cta-dark" onclick="openModal('Growth','1.197')">Activar Growth</button>
       </div>
 
-      <!-- ELITE -->
-      <div class="p-card" style="border-color:rgba(0,212,170,0.18);background:linear-gradient(160deg,#1a1a1a,#141414)">
-        <div style="position:absolute;top:-11px;right:20px;padding:4px 12px;border-radius:100px;background:linear-gradient(90deg,#00ffcc,#00b891);color:#000;font-size:10px;font-weight:700;letter-spacing:.04em">MÁXIMO ROI</div>
-        <div class="p-name" style="background:linear-gradient(90deg,#00ffcc,#00b891);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Pack Elite</div>
-        <div class="p-desc">Tu clínica en piloto automático total. Agenda llena, cero gestión manual.</div>
-        <div class="p-setup">Setup: <s>3.000€</s> → <strong>1.500€ (lanzamiento)</strong></div>
-        <div class="p-price-row"><span class="p-amount" style="background:linear-gradient(90deg,#00ffcc,#00b891);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">1.897€</span><span class="p-period">/mes</span></div>
-        <div class="p-hook">✦ Recupera de media 18.000€/mes</div>
+      <div class="p-card">
+        <div class="p-name">Elite</div>
+        <div class="p-desc">Para clínicas que quieren integrar el sistema con su agenda y tener soporte dedicado.</div>
+        <div class="p-setup">Setup: <s>1.500€</s> &rarr; <b>600€</b></div>
+        <div class="p-price">1.897€<span>/mes</span></div>
+        <div class="p-hr"></div>
         <ul class="p-feats">
-          <li class="p-feat yes"><span class="fi">✅</span>Respuestas automáticas 24/7</li>
-          <li class="p-feat yes"><span class="fi">✅</span>Todos los canales (IG, Web, WA, Email)</li>
-          <li class="p-feat yes"><span class="fi">✅</span>Entrenado con tus tratamientos</li>
-          <li class="p-feat yes"><span class="fi">✅</span>Alertas, dashboard y reportes</li>
-          <li class="p-feat yes"><span class="fi">✅</span>Seguimiento automático multicapa</li>
-          <li class="p-feat yes"><span class="fi">✅</span>Agenda y CRM integrados</li>
-          <li class="p-feat yes"><span class="fi">✅</span>Citas confirmadas automáticamente</li>
-          <li class="p-feat yes"><span class="fi">✅</span>Account Manager dedicado</li>
+          <li class="p-feat yes"><span class="fi-yes">✓</span> Todo lo del plan Growth</li>
+          <li class="p-feat yes"><span class="fi-yes">✓</span> Agenda y CRM integrados</li>
+          <li class="p-feat yes"><span class="fi-yes">✓</span> Confirmación de citas automática</li>
+          <li class="p-feat yes"><span class="fi-yes">✓</span> Canal de email incluido</li>
+          <li class="p-feat yes"><span class="fi-yes">✓</span> Persona dedicada a tu cuenta</li>
+          <li class="p-feat yes"><span class="fi-yes">✓</span> Revisión mensual de resultados</li>
         </ul>
-        <button class="p-cta" style="width:100%;padding:14px;border-radius:var(--r6);font-weight:700;font-size:14px;background:linear-gradient(90deg,#00ffcc,#00b891);color:#000;border:none;cursor:pointer;font-family:var(--fb);transition:opacity .2s" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'" onclick="openPackModal('Elite','1.897')">Activar Elite →</button>
-        <p style="text-align:center;font-size:11px;color:var(--g500);margin-top:10px">Sin permanencia · Activación en 72h</p>
+        <button class="p-cta p-cta-outline" onclick="openModal('Elite','1.897')">Activar Elite</button>
+        <p class="p-note">Sin permanencia · Activación en 72h</p>
       </div>
 
     </div>
   </div>
 </section>
+
+<div class="divider"></div>
 
 <!-- FAQ -->
-<section class="faq-section" id="faq">
+<section class="faq-bg" id="preguntas">
   <div class="container">
-    <div class="s-header reveal" style="text-align:center;max-width:560px;margin:0 auto 56px">
-      <div class="s-label">FAQ</div>
-      <h2 class="s-title">Todo lo que necesitas saber</h2>
+    <div class="reveal" style="text-align:center;max-width:480px;margin:0 auto">
+      <div class="section-label">Preguntas frecuentes</div>
+      <h2 class="section-title">Lo que nos preguntan siempre.</h2>
     </div>
     <div class="faq-list reveal">
-
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)"><span>¿Cuánto tarda en estar listo?</span><svg class="faq-arr" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></button>
-        <div class="faq-a">72 horas desde que nos confirmas. Nosotros lo configuramos todo — tú no tocas nada técnico. Solo nos cuentas tu clínica y tus tratamientos y en tres días está funcionando.</div>
+        <button class="faq-btn" onclick="toggleFaq(this)"><span>¿Cuánto tarda en estar funcionando?</span><svg class="faq-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 6l4 4 4-4"/></svg></button>
+        <div class="faq-answer">72 horas desde que nos confirmas. Nos encargamos de todo. Solo tienes que darnos acceso a tus canales y revisar el resultado antes de activarlo.</div>
       </div>
-
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)"><span>¿Necesito saber de tecnología?</span><svg class="faq-arr" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></button>
-        <div class="faq-a">No. Nosotros nos encargamos de todo. Tú solo nos das acceso a tus canales (Instagram, WhatsApp, web) y nosotros hacemos el resto. Sin código, sin configuraciones técnicas.</div>
+        <button class="faq-btn" onclick="toggleFaq(this)"><span>¿Tengo que cambiar algo de cómo trabajo ahora?</span><svg class="faq-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 6l4 4 4-4"/></svg></button>
+        <div class="faq-answer">No. El sistema se instala sobre tus canales existentes sin modificar tu agenda, tu software ni tus procesos internos. Añade una capa de respuesta automática encima de lo que ya tienes.</div>
       </div>
-
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)"><span>¿Funciona para clínicas dentales también?</span><svg class="faq-arr" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></button>
-        <div class="faq-a">Sí. Trabajamos con clínicas estéticas y dentales. El sistema se entrena con tus tratamientos específicos — ortodoncia, implantes, blanqueamiento, estética facial — y responde con el conocimiento de tu clínica.</div>
+        <button class="faq-btn" onclick="toggleFaq(this)"><span>¿Cómo suena el sistema cuando responde?</span><svg class="faq-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 6l4 4 4-4"/></svg></button>
+        <div class="faq-answer">Lo entrenamos con el tono y el estilo de tu clínica. Antes de activarlo te mostramos ejemplos de conversaciones para que lo apruebes. Si algo no encaja, lo ajustamos.</div>
       </div>
-
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)"><span>¿Qué pasa si el cliente hace una pregunta difícil?</span><svg class="faq-arr" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></button>
-        <div class="faq-a">El sistema detecta cuándo una consulta necesita atención humana y alerta a tu equipo al instante. Nunca improvisa ni da información que no debe dar. Siempre hay un humano de respaldo.</div>
+        <button class="faq-btn" onclick="toggleFaq(this)"><span>¿Qué pasa si el sistema no sabe responder a algo?</span><svg class="faq-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 6l4 4 4-4"/></svg></button>
+        <div class="faq-answer">Detecta automáticamente cuándo una pregunta necesita una persona y avisa a tu equipo. Nunca improvisa información que no debería dar.</div>
       </div>
-
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)"><span>¿Los clientes saben que es automático?</span><svg class="faq-arr" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></button>
-        <div class="faq-a">El sistema habla con el tono y el estilo de tu clínica. La mayoría de leads no notan diferencia — simplemente reciben una respuesta rápida, amable y útil. Eso es lo que importa.</div>
+        <button class="faq-btn" onclick="toggleFaq(this)"><span>¿Funciona para clínicas dentales también?</span><svg class="faq-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 6l4 4 4-4"/></svg></button>
+        <div class="faq-answer">Sí. Trabajamos con clínicas estéticas y dentales. El sistema se entrena con tus tratamientos específicos, ya sean faciales, corporales, implantes u ortodoncia.</div>
       </div>
-
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)"><span>¿Hay permanencia?</span><svg class="faq-arr" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></button>
-        <div class="faq-a">No. Sin permanencias ni letras pequeñas. Puedes cancelar con 30 días de aviso. Confiamos en los resultados — si no funciona, no queremos que pagues.</div>
+        <button class="faq-btn" onclick="toggleFaq(this)"><span>¿Hay permanencia?</span><svg class="faq-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 6l4 4 4-4"/></svg></button>
+        <div class="faq-answer">No. Puedes cancelar con 30 días de aviso. Sin penalizaciones ni contratos largos.</div>
       </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)"><span>¿Cómo empiezo?</span><svg class="faq-arr" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></button>
-        <div class="faq-a">Elige el plan que encaja con tu clínica, completa el formulario de activación (5 minutos) y en 72 horas tu sistema está activo. Sin llamadas, sin reuniones, sin complicaciones.</div>
-      </div>
-
     </div>
   </div>
 </section>
 
+<div class="divider"></div>
+
 <!-- CONTACT -->
-<section class="contact-section" id="contact">
+<section class="contact-bg" id="contacto">
   <div class="container">
-    <div class="s-header reveal" style="max-width:560px">
-      <div class="s-label">Contacto</div>
-      <h2 class="s-title">¿Tienes dudas?<br>Te respondemos rápido.</h2>
-      <p class="s-sub">No hacemos llamadas de ventas. Escríbenos y te respondemos en menos de 2 horas con todo lo que necesitas para decidir.</p>
+    <div class="reveal">
+      <div class="section-label">Contacto</div>
     </div>
     <div class="contact-grid reveal">
-      <div class="contact-info-block">
-        <a href="https://www.instagram.com/nova.agents" target="_blank" class="contact-channel">
-          <div class="ch-icon">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="var(--accent)" stroke="none"/></svg>
-          </div>
-          <div>
-            <div class="ch-label">Instagram</div>
-            <div class="ch-val">@nova.agents</div>
-          </div>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--g600)" stroke-width="1.5" stroke-linecap="round" style="margin-left:auto"><path d="M3 8h10M8.5 4L13 8l-4.5 4"/></svg>
+      <div class="contact-info">
+        <div class="contact-title">¿Tienes dudas?</div>
+        <div class="contact-sub">Somos un equipo pequeño y respondemos rápido. Escríbenos y te contestamos el mismo día. Sin llamadas de ventas si no quieres.</div>
+        <a href="https://www.instagram.com/nova.agents" target="_blank" class="ch-link">
+          <div class="ch-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="var(--gray-500)" stroke="none"/></svg></div>
+          <div><div class="ch-label">Instagram</div><div class="ch-val">@nova.agents</div></div>
         </a>
-        <a href="mailto:agentsnova@gmail.com" class="contact-channel">
-          <div class="ch-icon">
-            <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
-          </div>
-          <div>
-            <div class="ch-label">Email</div>
-            <div class="ch-val">agentsnova@gmail.com</div>
-          </div>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--g600)" stroke-width="1.5" stroke-linecap="round" style="margin-left:auto"><path d="M3 8h10M8.5 4L13 8l-4.5 4"/></svg>
+        <a href="mailto:agentsnova@gmail.com" class="ch-link">
+          <div class="ch-icon"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg></div>
+          <div><div class="ch-label">Email</div><div class="ch-val">agentsnova@gmail.com</div></div>
         </a>
-        <div style="padding:24px;background:var(--g800);border:1px solid var(--g700);border-radius:var(--r12)">
-          <div style="font-size:12px;color:var(--accent);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Tiempo de respuesta</div>
-          <div style="font-size:22px;font-family:var(--fd);font-weight:700;margin-bottom:4px">&lt; 2 horas</div>
-          <div style="font-size:13px;color:var(--g400)">De lunes a viernes · 9h a 20h</div>
-        </div>
+        <p class="contact-note">Respondemos de lunes a viernes. No hacemos llamadas de ventas — si tienes preguntas las resolvemos por escrito, sin presiones.</p>
       </div>
-      <div class="contact-form-area">
+      <div class="cf">
         <div class="cf-title">Escríbenos</div>
-        <div class="cf-sub">Cuéntanos tu situación y te decimos exactamente qué plan necesitas y qué resultados puedes esperar.</div>
+        <div class="cf-sub">Cuéntanos tu situación y te decimos qué plan tiene sentido para tu clínica.</div>
         <form onsubmit="submitContact(event)">
-          <div class="cf-field"><label>Tu nombre y clínica</label><input type="text" placeholder="Ana — Clínica Luminosa Madrid" required></div>
-          <div class="cf-field"><label>Email o Instagram</label><input type="text" placeholder="contacto@tuclinica.com" required></div>
+          <div class="cf-field"><label>Nombre y clínica</label><input type="text" placeholder="Ana — Clínica Luminosa, Madrid" required></div>
+          <div class="cf-field"><label>Email o Instagram</label><input type="text" placeholder="ana@tuclinica.com" required></div>
           <div class="cf-field"><label>¿Cuántos mensajes recibes al mes?</label>
-            <select>
-              <option value="">Selecciona...</option>
-              <option>Menos de 30</option><option>30 – 80</option><option>80 – 200</option><option>Más de 200</option>
-            </select>
+            <select><option value="">Selecciona...</option><option>Menos de 30</option><option>30 – 80</option><option>80 – 200</option><option>Más de 200</option></select>
           </div>
-          <div class="cf-field"><label>¿Qué te frena?</label><textarea rows="3" placeholder="Ej: perdemos leads en Instagram porque no respondemos rápido..."></textarea></div>
-          <button type="submit" class="btn-p" style="width:100%;justify-content:center;margin-top:6px">Enviar mensaje →</button>
+          <div class="cf-field"><label>¿Cuál es tu mayor problema ahora mismo?</label><textarea rows="3" placeholder="Ej: Respondemos tarde a Instagram y perdemos muchas consultas..."></textarea></div>
+          <button type="submit" class="btn-primary" style="width:100%;justify-content:center;margin-top:4px">Enviar</button>
         </form>
       </div>
     </div>
@@ -661,20 +671,16 @@ footer{padding:36px 0;border-top:1px solid var(--g800)}
 </section>
 
 <!-- FINAL CTA -->
-<section class="fcta-section" id="cta">
+<section class="fcta-bg">
   <div class="container">
     <div class="fcta-box reveal">
-      <div class="badge" style="margin-bottom:20px">Solo 5 nuevas clínicas este mes</div>
-      <h2>Deja de perder reservas<br><span style="color:var(--accent)">esta misma semana.</span></h2>
-      <p>Elige tu plan, completa el formulario de activación en 5 minutos y en 72 horas tu agenda empieza a llenarse sola.</p>
+      <h2>El primer paso es saber cuánto estás perdiendo.</h2>
+      <p>Haz el diagnóstico gratuito. Cuatro preguntas y el resultado es inmediato. Sin registro, sin compromiso.</p>
       <div class="fcta-ctas">
-        <button class="btn-p" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Ver planes →</button>
-        <button class="btn-s" onclick="openDemo()">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><polygon points="4 2 14 8 4 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
-          Ver demo
-        </button>
+        <button class="btn-white" onclick="document.getElementById('diagnostico').scrollIntoView({behavior:'smooth'})">Hacer el diagnóstico</button>
+        <button class="btn-outline-white" onclick="document.getElementById('precios').scrollIntoView({behavior:'smooth'})">Ver precios</button>
       </div>
-      <p class="no-call-note">Sin llamadas · Sin permanencias · Activación en 72h</p>
+      <p class="fcta-note">Sin permanencias · Activación en 72h · Cancelación con 30 días de aviso</p>
     </div>
   </div>
 </section>
@@ -683,368 +689,271 @@ footer{padding:36px 0;border-top:1px solid var(--g800)}
 <footer>
   <div class="container">
     <div class="footer-inner">
-      <div class="logo">
-        <svg class="logo-mark" viewBox="0 0 36 36" fill="none">
-          <rect width="36" height="36" rx="8" fill="#141414" stroke="#2a2a2a"/>
-          <path d="M10 26L18 10L26 26" stroke="#00d4aa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M13 21H23" stroke="#00d4aa" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
-          <circle cx="18" cy="10" r="2" fill="#00d4aa"/>
+      <div class="footer-logo">
+        <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+          <rect width="28" height="28" rx="6" fill="#1f2937"/>
+          <path d="M8 20L14 8L20 20" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M10.5 16H17.5" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/>
+          <circle cx="14" cy="8" r="1.5" fill="#22c55e"/>
         </svg>
-        <span class="logo-text">Nova<span>Agents</span></span>
+        <span class="footer-logo-name">Nova<span>Agents</span></span>
       </div>
-      <div class="footer-copy">© 2026 Nova Agents · Automatización para clínicas estéticas y dentales</div>
+      <div class="footer-copy">© 2026 Nova Agents · Clínicas estéticas y dentales</div>
     </div>
   </div>
 </footer>
 
-<!-- PACK ACTIVATION MODAL -->
-<div class="pack-modal-overlay" id="pack-modal">
-  <div class="pack-modal">
-    <button class="pm-close" onclick="closePackModal()">×</button>
-    <div class="pm-prog">
-      <div class="pm-prog-dot active" id="pmd1"></div>
-      <div class="pm-prog-dot" id="pmd2"></div>
-      <div class="pm-prog-dot" id="pmd3"></div>
-    </div>
+<!-- PACK MODAL -->
+<div class="overlay" id="pack-overlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div class="modal-prog"><div class="mpd active" id="mpd1"></div><div class="mpd" id="mpd2"></div><div class="mpd" id="mpd3"></div></div>
 
-    <!-- STEP 1: Dolor -->
-    <div class="pm-step active" id="pm-step-1">
-      <div class="pm-title">Antes de activar — una pregunta rápida</div>
-      <div class="pm-sub">Esto nos ayuda a configurar el sistema exactamente para tu clínica. 3 pasos, menos de 3 minutos.</div>
-      <div class="pm-fields">
-        <div class="pm-field"><label>Nombre de tu clínica y ciudad</label><input type="text" id="pm-clinica" placeholder="Ej: Clínica Luminosa · Madrid"></div>
-        <div class="pm-field"><label>¿Cuál es tu mayor problema ahora mismo?</label>
-          <div class="pm-opts">
-            <button class="pm-opt-btn" onclick="selectPmOpt(this,'problema')">No respondemos rápido a Instagram</button>
-            <button class="pm-opt-btn" onclick="selectPmOpt(this,'problema')">Los leads llegan pero no reservan</button>
-            <button class="pm-opt-btn" onclick="selectPmOpt(this,'problema')">No hacemos seguimiento</button>
-            <button class="pm-opt-btn" onclick="selectPmOpt(this,'problema')">Perdemos clientes en festivos/noches</button>
+    <div class="modal-step active" id="mstep1">
+      <div class="m-title">Cuéntanos tu clínica</div>
+      <div class="m-sub">Tres pasos, menos de tres minutos. Esto nos ayuda a configurar el sistema correctamente.</div>
+      <div class="m-fields">
+        <div><label class="m-label">Nombre de tu clínica y ciudad</label><input class="m-input" id="m-clinica" placeholder="Clínica Luminosa · Madrid"></div>
+        <div><label class="m-label">¿Cuál es tu mayor problema ahora?</label>
+          <div class="m-opts">
+            <button class="m-opt" onclick="mSel(this,'p')">Respondemos tarde o no respondemos</button>
+            <button class="m-opt" onclick="mSel(this,'p')">Los leads llegan pero no reservan</button>
+            <button class="m-opt" onclick="mSel(this,'p')">No hacemos seguimiento</button>
+            <button class="m-opt" onclick="mSel(this,'p')">Perdemos pacientes fines de semana</button>
           </div>
         </div>
-        <div class="pm-field"><label>¿Cuántos mensajes/leads recibes al mes?</label>
-          <select id="pm-leads">
-            <option value="">Selecciona...</option>
-            <option>Menos de 30</option><option>30 – 80</option><option>80 – 200</option><option>Más de 200</option>
-          </select>
+        <div><label class="m-label">¿Cuántos mensajes recibes al mes?</label>
+          <select class="m-select"><option value="">Selecciona...</option><option>Menos de 30</option><option>30 – 80</option><option>80 – 200</option><option>Más de 200</option></select>
         </div>
       </div>
-      <div class="pm-nav">
-        <span style="font-size:12px;color:var(--g400)">Paso 1 de 3</span>
-        <button class="pm-next" onclick="pmNext(2)">Siguiente →</button>
-      </div>
+      <div class="m-nav"><span style="font-size:12px;color:var(--gray-400)">1 de 3</span><button class="m-next" onclick="mGo(2)">Siguiente →</button></div>
     </div>
 
-    <!-- STEP 2: Clínica -->
-    <div class="pm-step" id="pm-step-2">
-      <div class="pm-title">Cuéntanos tu clínica</div>
-      <div class="pm-sub">Con esto entrenamos el sistema para que hable exactamente como lo haría tu mejor recepcionista.</div>
-      <div class="pm-fields">
-        <div class="pm-field"><label>¿Qué tipo de clínica es?</label>
-          <div class="pm-opts">
-            <button class="pm-opt-btn" onclick="selectPmOpt(this,'tipo')">Estética facial / corporal</button>
-            <button class="pm-opt-btn" onclick="selectPmOpt(this,'tipo')">Dental</button>
-            <button class="pm-opt-btn" onclick="selectPmOpt(this,'tipo')">Med Spa</button>
-            <button class="pm-opt-btn" onclick="selectPmOpt(this,'tipo')">Mixta (estética + dental)</button>
+    <div class="modal-step" id="mstep2">
+      <div class="m-title">Tu tipo de clínica</div>
+      <div class="m-sub">Con esto entrenamos el sistema con tu especialidad.</div>
+      <div class="m-fields">
+        <div><label class="m-label">¿Qué tipo de clínica es?</label>
+          <div class="m-opts">
+            <button class="m-opt" onclick="mSel(this,'t')">Estética facial o corporal</button>
+            <button class="m-opt" onclick="mSel(this,'t')">Dental</button>
+            <button class="m-opt" onclick="mSel(this,'t')">Med Spa</button>
+            <button class="m-opt" onclick="mSel(this,'t')">Mixta</button>
           </div>
         </div>
-        <div class="pm-field"><label>Tus 3 tratamientos más solicitados</label><input type="text" id="pm-tratamientos" placeholder="Ej: Botox, Rellenos, HIFU facial"></div>
-        <div class="pm-field"><label>¿En qué canal recibes más leads?</label>
-          <div class="pm-opts">
-            <button class="pm-opt-btn" onclick="selectPmOpt(this,'canal')">Instagram</button>
-            <button class="pm-opt-btn" onclick="selectPmOpt(this,'canal')">WhatsApp</button>
-            <button class="pm-opt-btn" onclick="selectPmOpt(this,'canal')">Web / formulario</button>
-            <button class="pm-opt-btn" onclick="selectPmOpt(this,'canal')">Todos por igual</button>
+        <div><label class="m-label">Tus tratamientos más solicitados</label><input class="m-input" id="m-tratos" placeholder="Botox, rellenos, implantes..."></div>
+        <div><label class="m-label">¿Dónde recibes más mensajes?</label>
+          <div class="m-opts">
+            <button class="m-opt" onclick="mSel(this,'c')">Instagram</button>
+            <button class="m-opt" onclick="mSel(this,'c')">WhatsApp</button>
+            <button class="m-opt" onclick="mSel(this,'c')">Web</button>
+            <button class="m-opt" onclick="mSel(this,'c')">Varios por igual</button>
           </div>
         </div>
       </div>
-      <div class="pm-nav">
-        <button class="pm-back" onclick="pmBack(1)">← Atrás</button>
-        <button class="pm-next" onclick="pmNext(3)">Siguiente →</button>
-      </div>
+      <div class="m-nav"><button class="m-back" onclick="mGo(1)">← Atrás</button><button class="m-next" onclick="mGo(3)">Siguiente →</button></div>
     </div>
 
-    <!-- STEP 3: Contacto -->
-    <div class="pm-step" id="pm-step-3">
-      <div class="pm-title" id="pm-final-title">Activa tu Pack</div>
-      <div class="pm-sub">Último paso. Te enviamos confirmación y en 72 horas tu sistema está funcionando.</div>
-      <div class="pm-fields">
-        <div class="pm-field"><label>Tu nombre</label><input type="text" id="pm-nombre" placeholder="Ana García"></div>
-        <div class="pm-field"><label>Email de contacto</label><input type="text" id="pm-email" placeholder="ana@tuclinica.com"></div>
-        <div class="pm-field"><label>Instagram de tu clínica (opcional)</label><input type="text" id="pm-ig" placeholder="@clinicaluminosa"></div>
-        <div style="padding:14px 16px;background:var(--accent-sub);border:1px solid var(--accent-bord);border-radius:var(--r6);font-size:13px;color:var(--g300)">
-          📋 Tras la activación recibirás acceso a tu panel de cliente donde podrás ver resultados en tiempo real.
+    <div class="modal-step" id="mstep3">
+      <div class="m-title" id="mstep3-title">Activa tu plan</div>
+      <div class="m-sub">Te confirmamos en menos de dos horas y el sistema estará listo en 72 horas.</div>
+      <div class="m-fields">
+        <div><label class="m-label">Tu nombre</label><input class="m-input" id="m-nombre" placeholder="Ana García"></div>
+        <div><label class="m-label">Email de contacto</label><input class="m-input" id="m-email" placeholder="ana@tuclinica.com"></div>
+        <div><label class="m-label">Instagram de tu clínica (opcional)</label><input class="m-input" id="m-ig" placeholder="@clinicaluminosa"></div>
+        <div style="padding:10px 12px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--r8);font-size:12px;color:var(--gray-500);line-height:1.6">
+          Revisaremos tu información y te escribimos para confirmar los siguientes pasos. Sin llamadas si no quieres.
         </div>
       </div>
-      <div class="pm-nav">
-        <button class="pm-back" onclick="pmBack(2)">← Atrás</button>
-        <button class="pm-next" id="pm-submit-btn" onclick="pmSubmit()">Confirmar activación →</button>
-      </div>
+      <div class="m-nav"><button class="m-back" onclick="mGo(2)">← Atrás</button><button class="m-next" onclick="mSubmit()">Confirmar →</button></div>
     </div>
 
-    <!-- SUCCESS -->
-    <div class="pm-step" id="pm-success">
-      <div class="pm-success">
-        <div class="pm-success-icon">✓</div>
-        <h3>¡Solicitud enviada!</h3>
-        <p>Nos ponemos en contacto contigo en menos de 2 horas para confirmar tu activación.<br><br>En 72 horas tu sistema estará funcionando.</p>
-        <button class="pm-next" style="margin-top:24px" onclick="closePackModal()">Cerrar</button>
+    <div class="modal-step" id="mstep-ok">
+      <div class="m-success">
+        <div class="m-success-icon"><svg viewBox="0 0 20 20"><polyline points="4 10 8 14 16 6"/></svg></div>
+        <h3>Recibido.</h3>
+        <p>Te escribimos antes de dos horas para confirmar los próximos pasos. En 72 horas el sistema estará activo.</p>
+        <button class="m-next" style="margin-top:20px;width:100%" onclick="closeModal()">Cerrar</button>
       </div>
     </div>
-
   </div>
 </div>
 
 <!-- DEMO MODAL -->
-<div class="demo-overlay" id="demo-modal" onclick="if(event.target===this)closeDemo()">
-  <div style="width:100%;max-width:400px;position:relative">
-    <button onclick="closeDemo()" style="position:absolute;top:-42px;right:0;background:none;color:var(--g400);font-size:28px;line-height:1;border:none;cursor:pointer">×</button>
-    <div style="background:#1a1a1a;border-radius:40px;padding:12px;box-shadow:0 40px 80px rgba(0,0,0,.8),inset 0 0 0 1px #333">
-      <div style="display:flex;align-items:center;justify-content:center;margin-bottom:8px">
-        <div style="width:72px;height:5px;background:#333;border-radius:3px"></div>
-      </div>
-      <div style="background:#000;border-radius:28px;overflow:hidden;height:660px;display:flex;flex-direction:column">
-        <div style="padding:12px 18px 0;display:flex;justify-content:space-between;align-items:center">
-          <span style="font-size:13px;font-weight:600;color:#fff">9:41</span>
-          <div style="display:flex;gap:6px;align-items:center">
-            <svg width="15" height="11" viewBox="0 0 16 12" fill="white"><rect x="0" y="4" width="3" height="8" rx="1"/><rect x="4.5" y="2.5" width="3" height="9.5" rx="1"/><rect x="9" y="1" width="3" height="11" rx="1"/><rect x="13.5" y="0" width="2.5" height="12" rx="1" opacity=".35"/></svg>
-            <svg width="25" height="11" viewBox="0 0 25 12" fill="none"><rect x=".5" y=".5" width="22" height="11" rx="3.5" stroke="white" stroke-opacity=".3"/><rect x="1.5" y="1.5" width="17" height="9" rx="2.5" fill="white"/><path d="M23.5 4.5v3a2 2 0 000-3z" fill="white" fill-opacity=".4"/></svg>
+<div class="demo-overlay" id="demo-overlay" onclick="if(event.target===this)closeDemo()">
+  <div style="width:100%;max-width:360px;position:relative">
+    <button onclick="closeDemo()" style="position:absolute;top:-36px;right:0;background:none;color:#fff;font-size:24px;line-height:1;border:none;cursor:pointer;opacity:.7">×</button>
+    <div style="background:#1a1a1a;border-radius:34px;padding:10px;box-shadow:0 32px 64px rgba(0,0,0,.5),inset 0 0 0 1px #2a2a2a">
+      <div style="display:flex;align-items:center;justify-content:center;margin-bottom:6px"><div style="width:60px;height:4px;background:#2a2a2a;border-radius:2px"></div></div>
+      <div style="background:#000;border-radius:24px;overflow:hidden;height:580px;display:flex;flex-direction:column">
+        <div style="padding:10px 16px 0;display:flex;justify-content:space-between">
+          <span style="font-size:12px;font-weight:600;color:#fff">9:41</span>
+          <div style="display:flex;gap:4px;align-items:center">
+            <svg width="13" height="10" viewBox="0 0 16 12" fill="white"><rect x="0" y="4" width="3" height="8" rx="1"/><rect x="4.5" y="2.5" width="3" height="9.5" rx="1"/><rect x="9" y="1" width="3" height="11" rx="1"/></svg>
+            <svg width="21" height="10" viewBox="0 0 25 12" fill="none"><rect x=".5" y=".5" width="22" height="11" rx="3.5" stroke="white" stroke-opacity=".3"/><rect x="1.5" y="1.5" width="15" height="9" rx="2.5" fill="white"/></svg>
           </div>
         </div>
-        <div style="padding:10px 14px 10px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #1a1a1a">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-          <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <div style="width:30px;height:30px;border-radius:50%;background:#111;display:flex;align-items:center;justify-content:center">
-              <svg viewBox="0 0 36 36" fill="none" width="18" height="18"><path d="M10 26L18 10L26 26" stroke="#00d4aa" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 21H23" stroke="#00d4aa" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/><circle cx="18" cy="10" r="2" fill="#00d4aa"/></svg>
+        <div style="padding:8px 12px 8px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #1a1a1a">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <div style="width:26px;height:26px;border-radius:50%;background:#111;display:flex;align-items:center;justify-content:center">
+              <svg viewBox="0 0 28 28" fill="none" width="14" height="14"><path d="M8 20L14 8L20 20" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10.5 16H17.5" stroke="#16a34a" stroke-width="2" stroke-linecap="round" opacity="0.5"/><circle cx="14" cy="8" r="1.5" fill="#16a34a"/></svg>
             </div>
           </div>
-          <div style="flex:1">
-            <div style="font-size:13px;font-weight:600;color:#fff">Clínica Luminosa</div>
-            <div style="font-size:11px;color:#555">Activo ahora</div>
-          </div>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
-        </div>
-        <div style="flex:1;overflow-y:auto;padding:16px 12px;display:flex;flex-direction:column;gap:12px;scrollbar-width:none" id="demo-messages"></div>
-        <div style="padding:8px 10px 18px;display:flex;align-items:center;gap:8px;background:#000;border-top:1px solid #1a1a1a">
-          <div style="flex:1;background:#1a1a1a;border-radius:20px;padding:9px 14px;font-size:13px;color:#555;display:flex;align-items:center;justify-content:space-between">
-            <span>Mensaje...</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>
-          </div>
-          <div style="width:32px;height:32px;border-radius:50%;background:#1a1a1a;display:flex;align-items:center;justify-content:center">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          <div>
+            <div style="font-size:12px;font-weight:600;color:#fff">Clínica Luminosa</div>
+            <div style="font-size:10px;color:#555">Activo ahora</div>
           </div>
         </div>
+        <div style="flex:1;overflow-y:auto;padding:12px 10px;display:flex;flex-direction:column;gap:9px;scrollbar-width:none" id="demo-msgs"></div>
+        <div style="padding:7px 9px 14px;background:#000;border-top:1px solid #1a1a1a">
+          <div style="background:#1a1a1a;border-radius:16px;padding:7px 12px;font-size:11px;color:#444">Mensaje...</div>
+        </div>
       </div>
-      <div style="display:flex;justify-content:center;padding:8px 0 2px">
-        <div style="width:110px;height:4px;background:#333;border-radius:2px"></div>
-      </div>
+      <div style="display:flex;justify-content:center;padding:6px 0 2px"><div style="width:90px;height:3px;background:#2a2a2a;border-radius:2px"></div></div>
     </div>
-    <div id="demo-response-bar" style="text-align:center;margin-top:16px;opacity:0;transition:opacity .5s ease">
-      <span style="font-size:11px;color:var(--accent);background:var(--accent-sub);border:1px solid var(--accent-bord);padding:6px 14px;border-radius:100px">⚡ Respuesta en 18 segundos</span>
+    <div id="demo-bar" style="text-align:center;margin-top:12px;opacity:0;transition:opacity .5s">
+      <span style="font-size:11px;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);padding:5px 12px;border-radius:100px">Respuesta en 18 segundos</span>
     </div>
   </div>
 </div>
 
 <style>
-@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
 @keyframes typingDot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-4px)}}
 </style>
 
 <script>
-// NAV
-const navEl = document.getElementById('nav');
-window.addEventListener('scroll',()=>navEl.classList.toggle('scrolled',scrollY>50));
-function toggleNav(){document.getElementById('nav-links').classList.toggle('open')}
+// NAV scroll
+window.addEventListener('scroll',()=>{});
 
 // REVEAL
-const ro = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
 
 // FAQ
 function toggleFaq(btn){
   const a=btn.nextElementSibling,open=btn.classList.contains('open');
-  document.querySelectorAll('.faq-q.open').forEach(b=>{b.classList.remove('open');b.nextElementSibling.classList.remove('open')});
+  document.querySelectorAll('.faq-btn.open').forEach(b=>{b.classList.remove('open');b.nextElementSibling.classList.remove('open')});
   if(!open){btn.classList.add('open');a.classList.add('open')}
 }
 
-// CONTACT FORM
+// CONTACT
 function submitContact(e){
   e.preventDefault();
   const btn=e.target.querySelector('button[type=submit]');
-  btn.textContent='✓ Mensaje enviado — te respondemos en 2h';
-  btn.style.background='var(--g800)';btn.style.color='var(--accent)';btn.style.border='1px solid var(--accent)';
-  btn.disabled=true;
+  btn.textContent='Enviado — te respondemos hoy';
+  btn.style.background='var(--gray-50)';btn.style.color='var(--green)';btn.style.border='1px solid var(--green)';btn.disabled=true;
 }
 
-// PACK MODAL
-let currentPack='',currentPrice='';
-function openPackModal(pack,price){
-  currentPack=pack;currentPrice=price;
-  document.getElementById('pm-final-title').textContent=`Activar Pack ${pack} — ${price}€/mes`;
-  pmGoStep(1);
-  document.getElementById('pack-modal').classList.add('show');
+// MODAL
+let activePack='';
+function openModal(pack,price){
+  activePack=pack;
+  document.getElementById('mstep3-title').textContent=`Activar ${pack} — ${price}€/mes`;
+  mGoStep(1);
+  document.querySelectorAll('.m-opt.sel').forEach(b=>b.classList.remove('sel'));
+  ['m-clinica','m-tratos','m-nombre','m-email','m-ig'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''});
+  document.getElementById('pack-overlay').classList.add('show');
   document.body.style.overflow='hidden';
 }
-function closePackModal(){
-  document.getElementById('pack-modal').classList.remove('show');
-  document.body.style.overflow='';
-  pmGoStep(1);
-  document.querySelectorAll('.pm-opt-btn.sel').forEach(b=>b.classList.remove('sel'));
+function closeModal(){document.getElementById('pack-overlay').classList.remove('show');document.body.style.overflow='';}
+function mGoStep(n){
+  document.querySelectorAll('.modal-step').forEach(s=>s.classList.remove('active'));
+  const id=n==='ok'?'mstep-ok':`mstep${n}`;
+  document.getElementById(id).classList.add('active');
+  [1,2,3].forEach(i=>{const d=document.getElementById(`mpd${i}`);if(!d)return;d.classList.remove('active','done');if(i<n)d.classList.add('done');else if(i===n)d.classList.add('active')});
 }
-function pmGoStep(n){
-  document.querySelectorAll('.pm-step').forEach(s=>s.classList.remove('active'));
-  const s=document.getElementById(n==='success'?'pm-success':`pm-step-${n}`);
-  if(s)s.classList.add('active');
-  [1,2,3].forEach(i=>{
-    const d=document.getElementById(`pmd${i}`);
-    if(d){d.classList.remove('active','done');if(i<n)d.classList.add('done');else if(i===n)d.classList.add('active')}
-  });
+function mGo(n){mGoStep(n)}
+function mSel(btn,g){btn.closest('.m-opts').querySelectorAll('.m-opt').forEach(b=>b.classList.remove('sel'));btn.classList.add('sel')}
+function mSubmit(){
+  const n=document.getElementById('m-nombre').value,e=document.getElementById('m-email').value;
+  if(!n||!e){alert('Completa tu nombre y email para continuar.');return}
+  document.querySelectorAll('.mpd').forEach(d=>{d.classList.remove('active');d.classList.add('done')});
+  mGoStep('ok');
 }
-function pmNext(to){pmGoStep(to)}
-function pmBack(to){pmGoStep(to)}
-function selectPmOpt(btn,group){
-  btn.closest('.pm-opts').querySelectorAll('.pm-opt-btn').forEach(b=>b.classList.remove('sel'));
-  btn.classList.add('sel');
-}
-function pmSubmit(){
-  const nombre=document.getElementById('pm-nombre').value;
-  const email=document.getElementById('pm-email').value;
-  if(!nombre||!email){alert('Por favor completa tu nombre y email.');return;}
-  document.querySelectorAll('.pm-prog-dot').forEach(d=>{d.classList.remove('active');d.classList.add('done')});
-  pmGoStep('success');
-}
-document.getElementById('pack-modal').addEventListener('click',function(e){if(e.target===this)closePackModal()});
+document.getElementById('pack-overlay').addEventListener('click',function(e){if(e.target===this)closeModal()});
 
-// DIAGNOSIS QUIZ
+// DIAGNOSIS
 const qs=[
-  {q:"¿Cuántos mensajes o leads recibes al mes?",hint:"Instagram, WhatsApp, formulario web...",opts:[{l:"Menos de 30",v:15},{l:"30 – 80",v:55},{l:"80 – 200",v:140},{l:"Más de 200",v:250}]},
-  {q:"¿Cuánto tardas en responder a un lead nuevo?",hint:"Tiempo medio desde que llega hasta que alguien contesta",opts:[{l:"Menos de 1 hora",v:.1},{l:"1 a 6 horas",v:.35},{l:"6 a 24 horas",v:.55},{l:"Más de 24 horas",v:.75}]},
-  {q:"¿Tienes algún sistema para gestionar leads?",hint:"CRM, chatbot, respuestas automáticas...",opts:[{l:"Sí, funciona bien",v:.1},{l:"Algo básico",v:.3},{l:"Solo manual",v:.55},{l:"Nada",v:.75}]},
-  {q:"¿Cuánto cobra de media tu clínica por tratamiento?",hint:"Ticket medio aproximado",opts:[{l:"Menos de 200€",v:150},{l:"200€ – 500€",v:350},{l:"500€ – 1.000€",v:750},{l:"Más de 1.000€",v:1500}]}
+  {q:"¿Cuántos mensajes o consultas recibes al mes?",hint:"Por Instagram, WhatsApp o la web",opts:[{l:"Menos de 30",v:15},{l:"30 – 80",v:55},{l:"80 – 200",v:140},{l:"Más de 200",v:250}]},
+  {q:"¿Cuánto tardas de media en responder?",hint:"Desde que llega el mensaje hasta que alguien contesta",opts:[{l:"Menos de 1 hora",v:.08},{l:"1 a 6 horas",v:.32},{l:"6 a 24 horas",v:.55},{l:"Más de un día",v:.75}]},
+  {q:"¿Hacéis seguimiento a quien no responde?",hint:"Si un paciente no contesta, ¿alguien le vuelve a escribir?",opts:[{l:"Sí, siempre",v:.08},{l:"A veces",v:.3},{l:"Casi nunca",v:.55},{l:"No",v:.72}]},
+  {q:"¿Cuánto paga de media un paciente por tratamiento?",hint:"Ticket medio aproximado",opts:[{l:"Menos de 200€",v:150},{l:"200€ – 500€",v:350},{l:"500€ – 1.000€",v:750},{l:"Más de 1.000€",v:1500}]}
 ];
-let cQ=0,ans=[],diagRunning=false;
+let cQ=0,ans=[];
 function renderQ(){
   const q=qs[cQ];
-  document.getElementById('diag-q-container').innerHTML=`
-    <p class="diag-q">${q.q}</p>
-    <p class="diag-hint">${q.hint}</p>
-    <div class="diag-opts">${q.opts.map((o,i)=>`<button class="diag-opt${ans[cQ]===i?' sel':''}" onclick="selOpt(${i})">${o.l}</button>`).join('')}</div>`;
-  document.getElementById('diag-counter').textContent=`${cQ+1} / ${qs.length}`;
-  document.getElementById('diag-back-btn').style.display=cQ>0?'block':'none';
-  for(let i=0;i<qs.length;i++){
-    const d=document.getElementById(`dp${i+1}`);
-    if(!d)continue;
-    d.classList.remove('active','done');
-    if(i<cQ)d.classList.add('done');
-    else if(i===cQ)d.classList.add('active');
-  }
+  document.getElementById('diag-container').innerHTML=`<p class="diag-q">${q.q}</p><p class="diag-hint">${q.hint}</p><div class="diag-opts">${q.opts.map((o,i)=>`<button class="diag-opt${ans[cQ]===i?' sel':''}" onclick="selQ(${i})">${o.l}</button>`).join('')}</div>`;
+  document.getElementById('diag-count').textContent=`${cQ+1} / ${qs.length}`;
+  document.getElementById('diag-back').style.display=cQ>0?'block':'none';
+  for(let i=0;i<qs.length;i++){const d=document.getElementById(`dp${i+1}`);if(!d)continue;d.classList.remove('active','done');if(i<cQ)d.classList.add('done');else if(i===cQ)d.classList.add('active')}
 }
-function selOpt(i){ans[cQ]=i;document.querySelectorAll('.diag-opt').forEach((b,j)=>b.classList.toggle('sel',j===i))}
-function nextQ(){
-  if(ans[cQ]===undefined){alert('Selecciona una opción para continuar.');return}
-  if(cQ<qs.length-1){cQ++;renderQ()}else showDiagResult();
-}
+function selQ(i){ans[cQ]=i;document.querySelectorAll('.diag-opt').forEach((b,j)=>b.classList.toggle('sel',j===i))}
+function nextQ(){if(ans[cQ]===undefined){alert('Selecciona una opción.');return}cQ<qs.length-1?(cQ++,renderQ()):showResult()}
 function prevQ(){if(cQ>0){cQ--;renderQ()}}
-function showDiagResult(){
-  const leads=qs[0].opts[ans[0]].v;
-  const loss=qs[1].opts[ans[1]].v;
-  const noAuto=qs[2].opts[ans[2]].v;
-  const ticket=qs[3].opts[ans[3]].v;
-  const combined=Math.min(.88,loss+(noAuto*.45));
-  const lost=Math.round(leads*combined);
-  const rev=Math.round(lost*.35*ticket);
-  let risk,rc,rmsg;
-  if(combined>.6){risk='🔴 Riesgo ALTO';rc='r-high';rmsg='Estás perdiendo una parte crítica de tu potencial. Cada día sin actuar son reservas que se van a la competencia.'}
-  else if(combined>.35){risk='🟡 Riesgo MEDIO';rc='r-med';rmsg='Tu clínica puede mejorar notablemente. Cada mes que pasa son ingresos que no vuelven.'}
-  else{risk='🟢 Riesgo BAJO';rc='r-low';rmsg='Buen punto de partida. Aún así, hay margen real de mejora en conversión.'}
+function showResult(){
+  const leads=qs[0].opts[ans[0]].v,loss=qs[1].opts[ans[1]].v,noF=qs[2].opts[ans[2]].v,ticket=qs[3].opts[ans[3]].v;
+  const combined=Math.min(.86,loss+noF*.4);
+  const lost=Math.round(leads*combined),rev=Math.round(lost*.32*ticket);
+  let badge,bc,msg;
+  if(combined>.6){badge='Riesgo alto';bc='rb-high';msg='Una parte importante de tus mensajes no está recibiendo respuesta a tiempo. Cada semana son reservas que van a otra clínica.'}
+  else if(combined>.35){badge='Riesgo medio';bc='rb-med';msg='Hay margen de mejora claro. Con respuesta y seguimiento automático, buena parte de esos leads se convertirían en reservas.'}
+  else{badge='Riesgo bajo';bc='rb-low';msg='Tu clínica responde razonablemente bien. El seguimiento automático puede aumentar tu tasa de conversión.'}
   const quiz=document.getElementById('diag-quiz');
-  quiz.style.opacity='0';quiz.style.transition='opacity .35s ease';
+  quiz.style.opacity='0';quiz.style.transition='opacity .28s ease';
   setTimeout(()=>{
     quiz.style.display='none';
     const r=document.getElementById('diag-result');
-    r.innerHTML=`<div class="result-card">
-      <div class="result-hdr">
-        <div class="result-risk ${rc}">${risk}</div>
-        <div class="result-title">Estás perdiendo ~<span style="color:var(--danger)">${rev.toLocaleString('es-ES')}€/mes</span></div>
-        <div class="result-sub">${rmsg}</div>
-      </div>
-      <div class="result-nums">
-        <div class="result-num"><div class="rn-label">Leads perdidos/mes</div><div class="rn-val">${lost}</div><div class="rn-note">de ${leads} leads totales</div></div>
-        <div class="result-num"><div class="rn-label">Ingresos perdidos/mes</div><div class="rn-val">${rev.toLocaleString('es-ES')}€</div><div class="rn-note">ticket medio ${ticket}€</div></div>
-      </div>
-      <div class="result-cta">
-        <p style="font-size:13px;color:var(--g400);margin-bottom:16px">Nova Agents recupera el 80% de esos ingresos desde el primer mes.</p>
-        <button class="btn-p" style="margin:0 auto" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Ver qué plan me conviene →</button>
-        <button class="result-retake" onclick="retakeDiag()">Repetir diagnóstico</button>
-      </div>
-    </div>`;
-    r.style.display='block';r.style.opacity='0';r.style.transform='translateY(16px)';r.style.transition='opacity .5s ease,transform .5s ease';
+    r.innerHTML=`<div class="result-box"><div class="result-top"><span class="result-badge ${bc}">${badge}</span><div class="result-title">Estimación: <span style="color:var(--red)">${rev.toLocaleString('es-ES')}€ al mes</span> en reservas perdidas</div><div class="result-desc">${msg}</div></div><div class="result-nums"><div class="result-num"><div class="rn-label">Mensajes sin convertir</div><div class="rn-val">${lost}</div><div class="rn-sub">de ${leads} mensajes/mes</div></div><div class="result-num"><div class="rn-label">Impacto estimado</div><div class="rn-val">${rev.toLocaleString('es-ES')}€</div><div class="rn-sub">con ticket medio de ${ticket}€</div></div></div><div class="result-footer"><p class="result-note">Estimación basada en datos del sector. El resultado real varía según la clínica.</p><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><button class="btn-primary" onclick="document.getElementById('precios').scrollIntoView({behavior:'smooth'})">Ver planes</button><button class="result-retake" onclick="retakeDiag()">Repetir</button></div></div></div>`;
+    r.style.cssText='display:block;opacity:0;transform:translateY(12px);transition:opacity .4s ease,transform .4s ease';
     setTimeout(()=>{r.style.opacity='1';r.style.transform='none'},30);
-  },350);
+  },300);
 }
 function retakeDiag(){
   cQ=0;ans=[];
   const r=document.getElementById('diag-result');r.style.display='none';r.innerHTML='';
-  const q=document.getElementById('diag-quiz');q.style.display='block';q.style.opacity='0';
+  const q=document.getElementById('diag-quiz');q.style.display='block';
   setTimeout(()=>{q.style.opacity='1';renderQ()},30);
 }
 renderQ();
 
 // DEMO
-const demoScript=[
-  {from:'user',text:'Hola! cuánto cuesta el tratamiento de hifu facial? 😊',delay:500},
-  {from:'bot',text:'¡Hola! 👋 El HIFU facial empieza desde 380€ según las zonas. ¿Te interesa solo el rostro o también cuello?',delay:1300},
-  {from:'user',text:'Solo el rostro, y tenéis disponibilidad esta semana?',delay:2700},
-  {from:'bot',text:'¡Perfecto! Tenemos hueco el miércoles a las 17h y el viernes a las 10h. ¿Cuál te viene mejor? Te reservo sin compromiso 🗓️',delay:3900},
-  {from:'user',text:'El miércoles a las 17h genial',delay:5300},
-  {from:'bot',text:'¡Confirmado! Te espero el miércoles a las 17h. Te mando recordatorio 24h antes. ¡Hasta entonces! ✨',delay:6500},
+const dScript=[
+  {from:'u',text:'Hola, cuánto cuesta el tratamiento de HIFU facial?',delay:400},
+  {from:'b',text:'Hola. El HIFU facial empieza desde 380€ según las zonas a tratar. ¿Te interesa solo el rostro o también cuello?',delay:1100},
+  {from:'u',text:'Solo el rostro. Tenéis disponibilidad esta semana?',delay:2600},
+  {from:'b',text:'Tenemos hueco el miércoles a las 17h y el viernes a las 10h. ¿Cuál te viene mejor?',delay:3600},
+  {from:'u',text:'El miércoles perfecto',delay:5000},
+  {from:'b',text:'Confirmado para el miércoles a las 17h. Te mando un recordatorio el día antes.',delay:6000},
 ];
-let demoRunning=false,demoTimers=[];
+let dRun=false,dTimers=[];
 function openDemo(){
-  document.getElementById('demo-modal').classList.add('show');
+  document.getElementById('demo-overlay').classList.add('show');
   document.body.style.overflow='hidden';
-  document.getElementById('demo-messages').innerHTML='';
-  document.getElementById('demo-response-bar').style.opacity='0';
-  demoRunning=true;demoTimers.forEach(clearTimeout);demoTimers=[];
-  demoScript.forEach(m=>{
-    const t=setTimeout(()=>{if(!demoRunning)return;appendMsg(m.from,m.text)},m.delay);
-    demoTimers.push(t);
-  });
-  const rb=setTimeout(()=>{document.getElementById('demo-response-bar').style.opacity='1'},2200);
-  demoTimers.push(rb);
+  document.getElementById('demo-msgs').innerHTML='';
+  document.getElementById('demo-bar').style.opacity='0';
+  dRun=true;dTimers.forEach(clearTimeout);dTimers=[];
+  dScript.forEach(m=>{const t=setTimeout(()=>{if(!dRun)return;addMsg(m.from,m.text)},m.delay);dTimers.push(t)});
+  const bt=setTimeout(()=>{document.getElementById('demo-bar').style.opacity='1'},1800);dTimers.push(bt);
 }
-function closeDemo(){
-  demoRunning=false;demoTimers.forEach(clearTimeout);
-  document.getElementById('demo-modal').classList.remove('show');
-  document.body.style.overflow='';
-}
-function appendMsg(from,text){
-  const c=document.getElementById('demo-messages');
-  const isBot=from==='bot';
+function closeDemo(){dRun=false;dTimers.forEach(clearTimeout);document.getElementById('demo-overlay').classList.remove('show');document.body.style.overflow='';}
+function addMsg(from,text){
+  const c=document.getElementById('demo-msgs'),isBot=from==='b';
   if(isBot){
-    const ti=document.createElement('div');
-    ti.id='typing-ind';ti.style.cssText='display:flex;align-items:center;gap:8px;align-self:flex-start';
-    ti.innerHTML=`<div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366);display:flex;align-items:center;justify-content:center;flex-shrink:0"><div style="width:22px;height:22px;border-radius:50%;background:#111;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 36 36" fill="none" width="14" height="14"><path d="M10 26L18 10L26 26" stroke="#00d4aa" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 21H23" stroke="#00d4aa" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/><circle cx="18" cy="10" r="2" fill="#00d4aa"/></svg></div></div><div style="background:#1a1a1a;border-radius:16px;border-bottom-left-radius:3px;padding:10px 14px;display:flex;gap:4px;align-items:center"><span style="width:5px;height:5px;background:#555;border-radius:50%;display:inline-block;animation:typingDot 1.2s infinite 0s"></span><span style="width:5px;height:5px;background:#555;border-radius:50%;display:inline-block;animation:typingDot 1.2s infinite .2s"></span><span style="width:5px;height:5px;background:#555;border-radius:50%;display:inline-block;animation:typingDot 1.2s infinite .4s"></span></div>`;
+    const ti=document.createElement('div');ti.id='ti';ti.style.cssText='display:flex;align-items:center;gap:6px;align-self:flex-start';
+    ti.innerHTML=`<div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366);display:flex;align-items:center;justify-content:center;flex-shrink:0"><div style="width:18px;height:18px;border-radius:50%;background:#111;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 28 28" fill="none" width="11" height="11"><path d="M8 20L14 8L20 20" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10.5 16H17.5" stroke="#16a34a" stroke-width="2" stroke-linecap="round" opacity="0.5"/><circle cx="14" cy="8" r="1.5" fill="#16a34a"/></svg></div></div><div style="background:#1c1c1c;border-radius:12px;border-bottom-left-radius:3px;padding:8px 10px;display:flex;gap:3px"><span style="width:4px;height:4px;background:#555;border-radius:50%;animation:typingDot 1.2s infinite 0s"></span><span style="width:4px;height:4px;background:#555;border-radius:50%;animation:typingDot 1.2s infinite .2s"></span><span style="width:4px;height:4px;background:#555;border-radius:50%;animation:typingDot 1.2s infinite .4s"></span></div>`;
     c.appendChild(ti);c.scrollTop=c.scrollHeight;
-    setTimeout(()=>{const ind=document.getElementById('typing-ind');if(ind)ind.remove();renderBubble(c,isBot,text)},650);
-  }else{renderBubble(c,isBot,text)}
+    setTimeout(()=>{const ind=document.getElementById('ti');if(ind)ind.remove();renderB(c,true,text)},550);
+  }else{renderB(c,false,text)}
 }
-function renderBubble(c,isBot,text){
+function renderB(c,isBot,text){
   const w=document.createElement('div');
-  w.style.cssText=`display:flex;flex-direction:column;gap:3px;align-self:${isBot?'flex-start':'flex-end'};max-width:76%;animation:fadeUp .35s ease forwards;opacity:0`;
-  const row=document.createElement('div');
-  row.style.cssText=`display:flex;align-items:flex-end;gap:7px;flex-direction:${isBot?'row':'row-reverse'}`;
-  if(isBot){
-    const av=document.createElement('div');
-    av.style.cssText='width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366);display:flex;align-items:center;justify-content:center;flex-shrink:0';
-    av.innerHTML='<div style="width:22px;height:22px;border-radius:50%;background:#111;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 36 36" fill="none" width="14" height="14"><path d="M10 26L18 10L26 26" stroke="#00d4aa" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 21H23" stroke="#00d4aa" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/><circle cx="18" cy="10" r="2" fill="#00d4aa"/></svg></div></div>';
-    row.appendChild(av);
-  }
-  const b=document.createElement('div');
-  b.style.cssText=isBot?'background:#1a1a1a;color:#fff;border-radius:16px;border-bottom-left-radius:3px;padding:10px 13px;font-size:13px;line-height:1.5':'background:#0095f6;color:#fff;border-radius:16px;border-bottom-right-radius:3px;padding:10px 13px;font-size:13px;line-height:1.5';
-  b.textContent=text;row.appendChild(b);w.appendChild(row);
-  const t=document.createElement('div');
-  t.style.cssText=`font-size:10px;color:#444;${isBot?'padding-left:33px':'text-align:right'}`;
-  t.textContent=isBot?'Nova Agents':'ahora';w.appendChild(t);
+  w.style.cssText=`display:flex;flex-direction:column;gap:2px;align-self:${isBot?'flex-start':'flex-end'};max-width:78%;animation:fadeUp .28s ease forwards;opacity:0`;
+  const row=document.createElement('div');row.style.cssText=`display:flex;align-items:flex-end;gap:5px;flex-direction:${isBot?'row':'row-reverse'}`;
+  if(isBot){const av=document.createElement('div');av.style.cssText='width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366);display:flex;align-items:center;justify-content:center;flex-shrink:0';av.innerHTML='<div style="width:18px;height:18px;border-radius:50%;background:#111;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 28 28" fill="none" width="11" height="11"><path d="M8 20L14 8L20 20" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10.5 16H17.5" stroke="#16a34a" stroke-width="2" stroke-linecap="round" opacity="0.5"/><circle cx="14" cy="8" r="1.5" fill="#16a34a"/></svg></div>';row.appendChild(av)}
+  const b=document.createElement('div');b.style.cssText=isBot?'background:#1c1c1c;color:#e0e0e0;border-radius:12px;border-bottom-left-radius:3px;padding:8px 11px;font-size:12px;line-height:1.5':'background:#0095f6;color:#fff;border-radius:12px;border-bottom-right-radius:3px;padding:8px 11px;font-size:12px;line-height:1.5';b.textContent=text;row.appendChild(b);w.appendChild(row);
+  const t=document.createElement('div');t.style.cssText=`font-size:10px;color:#333;${isBot?'padding-left:27px':'text-align:right'}`;t.textContent='ahora';w.appendChild(t);
   c.appendChild(w);c.scrollTop=c.scrollHeight;
 }
 </script>
