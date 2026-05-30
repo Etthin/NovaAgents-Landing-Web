@@ -508,7 +508,7 @@ footer{padding:28px 0;background:var(--gray-900);border-top:1px solid var(--gray
           <div class="card-desc" style="margin-top:8px">No pedimos que confíes a ciegas. Si no funciona, lo arreglamos — sin excusas.</div>
         </div>
         <div class="card">
-          <div class="card-label">Activación en 72 horas</div>
+          <div class="card-label">Activación en 24 horas</div>
           <div class="onboarding-steps">
             <div class="ob-row"><div class="ob-n">1</div><div>Nos cuentas cómo trabaja tu clínica y qué tratamientos ofreces. Por escrito, cuando te venga bien.</div></div>
             <div class="ob-row"><div class="ob-n">2</div><div>Configuramos el sistema con tu información y te lo mostramos antes de activarlo.</div></div>
@@ -543,7 +543,7 @@ footer{padding:28px 0;background:var(--gray-900);border-top:1px solid var(--gray
           <li class="p-feat yes"><span class="fi-yes">✓</span> Instagram, WhatsApp y web</li>
           <li class="p-feat yes"><span class="fi-yes">✓</span> Entrenado con tus tratamientos</li>
           <li class="p-feat yes"><span class="fi-yes">✓</span> Derivación a tu equipo cuando hace falta</li>
-          <li class="p-feat yes"><span class="fi-yes">✓</span> Activación en 72h</li>
+          <li class="p-feat yes"><span class="fi-yes">✓</span> Activación en 24h</li>
           <li class="p-feat no"><span class="fi-no">–</span> Seguimiento automático de leads</li>
           <li class="p-feat no"><span class="fi-no">–</span> Resumen semanal de resultados</li>
           <li class="p-feat no"><span class="fi-no">–</span> Agenda integrada</li>
@@ -586,7 +586,7 @@ footer{padding:28px 0;background:var(--gray-900);border-top:1px solid var(--gray
           <li class="p-feat yes"><span class="fi-yes">✓</span> Revisión mensual de resultados</li>
         </ul>
         <button class="p-cta p-cta-outline" onclick="openModal('Elite','1.897')">Activar Elite</button>
-        <p class="p-note">Sin permanencia · Activación en 72h</p>
+        <p class="p-note">Sin permanencia · Activación en 24h</p>
       </div>
 
     </div>
@@ -605,7 +605,7 @@ footer{padding:28px 0;background:var(--gray-900);border-top:1px solid var(--gray
     <div class="faq-list reveal">
       <div class="faq-item">
         <button class="faq-btn" onclick="toggleFaq(this)"><span>¿Cuánto tarda en estar funcionando?</span><svg class="faq-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 6l4 4 4-4"/></svg></button>
-        <div class="faq-answer">72 horas desde que nos confirmas. Nos encargamos de todo. Solo tienes que darnos acceso a tus canales y revisar el resultado antes de activarlo.</div>
+        <div class="faq-answer">24 horas desde que nos confirmas. Nos encargamos de todo. Solo tienes que darnos acceso a tus canales y revisar el resultado antes de activarlo.</div>
       </div>
       <div class="faq-item">
         <button class="faq-btn" onclick="toggleFaq(this)"><span>¿Tengo que cambiar algo de cómo trabajo ahora?</span><svg class="faq-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 6l4 4 4-4"/></svg></button>
@@ -656,13 +656,16 @@ footer{padding:28px 0;background:var(--gray-900);border-top:1px solid var(--gray
       <div class="cf">
         <div class="cf-title">Escríbenos</div>
         <div class="cf-sub">Cuéntanos tu situación y te decimos qué plan tiene sentido para tu clínica.</div>
-        <form onsubmit="submitContact(event)">
-          <div class="cf-field"><label>Nombre y clínica</label><input type="text" placeholder="Ana — Clínica Luminosa, Madrid" required></div>
-          <div class="cf-field"><label>Email o Instagram</label><input type="text" placeholder="ana@tuclinica.com" required></div>
+        <form action="https://formspree.io/f/mpqnneal" method="POST">
+          <input type="hidden" name="_subject" value="[Nova Agents] Nueva consulta de contacto">
+          <input type="hidden" name="_next" value="">
+          <input type="text" name="_gotcha" style="display:none">
+          <div class="cf-field"><label>Nombre y clínica</label><input type="text" name="nombre_clinica" placeholder="Ana — Clínica Luminosa, Madrid" required></div>
+          <div class="cf-field"><label>Email o Instagram</label><input type="email" name="email" placeholder="ana@tuclinica.com" required></div>
           <div class="cf-field"><label>¿Cuántos mensajes recibes al mes?</label>
-            <select><option value="">Selecciona...</option><option>Menos de 30</option><option>30 – 80</option><option>80 – 200</option><option>Más de 200</option></select>
+            <select name="mensajes_mes"><option value="">Selecciona...</option><option>Menos de 30</option><option>30 – 80</option><option>80 – 200</option><option>Más de 200</option></select>
           </div>
-          <div class="cf-field"><label>¿Cuál es tu mayor problema ahora mismo?</label><textarea rows="3" placeholder="Ej: Respondemos tarde a Instagram y perdemos muchas consultas..."></textarea></div>
+          <div class="cf-field"><label>¿Cuál es tu mayor problema ahora mismo?</label><textarea rows="3" name="problema" placeholder="Ej: Respondemos tarde a Instagram y perdemos muchas consultas..."></textarea></div>
           <button type="submit" class="btn-primary" style="width:100%;justify-content:center;margin-top:4px">Enviar</button>
         </form>
       </div>
@@ -680,7 +683,7 @@ footer{padding:28px 0;background:var(--gray-900);border-top:1px solid var(--gray
         <button class="btn-white" onclick="document.getElementById('diagnostico').scrollIntoView({behavior:'smooth'})">Hacer el diagnóstico</button>
         <button class="btn-outline-white" onclick="document.getElementById('precios').scrollIntoView({behavior:'smooth'})">Ver precios</button>
       </div>
-      <p class="fcta-note">Sin permanencias · Activación en 72h · Cancelación con 30 días de aviso</p>
+      <p class="fcta-note">Sin permanencias · Activación en 24h · Cancelación con 30 días de aviso</p>
     </div>
   </div>
 </section>
@@ -756,7 +759,7 @@ footer{padding:28px 0;background:var(--gray-900);border-top:1px solid var(--gray
 
     <div class="modal-step" id="mstep3">
       <div class="m-title" id="mstep3-title">Activa tu plan</div>
-      <div class="m-sub">Te confirmamos en menos de dos horas y el sistema estará listo en 72 horas.</div>
+      <div class="m-sub">Te confirmamos en menos de dos horas y el sistema estará listo en 24 horas.</div>
       <div class="m-fields">
         <div><label class="m-label">Tu nombre</label><input class="m-input" id="m-nombre" placeholder="Ana García"></div>
         <div><label class="m-label">Email de contacto</label><input class="m-input" id="m-email" placeholder="ana@tuclinica.com"></div>
@@ -772,7 +775,7 @@ footer{padding:28px 0;background:var(--gray-900);border-top:1px solid var(--gray
       <div class="m-success">
         <div class="m-success-icon"><svg viewBox="0 0 20 20"><polyline points="4 10 8 14 16 6"/></svg></div>
         <h3>Recibido.</h3>
-        <p>Te escribimos antes de dos horas para confirmar los próximos pasos. En 72 horas el sistema estará activo.</p>
+        <p>Te escribimos antes de dos horas para confirmar los próximos pasos. En 24 horas el sistema estará activo.</p>
         <button class="m-next" style="margin-top:20px;width:100%" onclick="closeModal()">Cerrar</button>
       </div>
     </div>
